@@ -8,6 +8,13 @@ export interface FAQ {
   answer: string
 }
 
+export interface QuickSummary {
+  forWho: string
+  bestPick: string
+  skipIf?: string
+  bullets: string[]
+}
+
 export interface Guide {
   slug: string
   title: string
@@ -21,6 +28,11 @@ export interface Guide {
   whoItIsFor: string[]
   whatMatters: WhatMattersItem[]
   relatedProductIds: string[]
+  featuredPickId?: string
+  quickSummary: QuickSummary
+  methodology: string[]
+  relatedGuideSlugs: string[]
+  relatedCategorySlugs: string[]
   faqs: FAQ[]
   conclusion: string
 }
@@ -34,7 +46,7 @@ export const guides: Guide[] = [
     category: 'Buyer Guide',
     categorySlug: 'adjustable-dumbbells',
     readTime: '8 min read',
-    metaTitle: 'Best Adjustable Dumbbells Under $300 (2025 Guide)',
+    metaTitle: 'Best Adjustable Dumbbells Under $300 (2026 Guide)',
     metaDescription:
       'Find the best adjustable dumbbells under $300. We compare weight range, adjustment speed, build quality, and value to help you pick the right set.',
     intro:
@@ -78,6 +90,26 @@ export const guides: Guide[] = [
       'nordictrack-select-a-weight',
       'yes4all-adjustable',
     ],
+    featuredPickId: 'bowflex-selecttech-552',
+    quickSummary: {
+      forWho: 'Home gym buyers who want one set of dumbbells that works for most training programs.',
+      bestPick: 'Bowflex SelectTech 552 for the fastest adjustments and strongest overall value under $300.',
+      skipIf:
+        'Skip this category if you plan to drop dumbbells from overhead often — fixed cast iron dumbbells are safer for that use.',
+      bullets: [
+        'Best overall: Bowflex SelectTech 552.',
+        'Best budget: Yes4All spin-lock set.',
+        'Best compact durable pick: PowerBlock Elite EXP.',
+        'Most buyers should prioritize adjustment speed over max weight specs.',
+      ],
+    },
+    methodology: [
+      'We prioritize picks that keep pace with real sessions, not just static spec-sheet wins.',
+      'Every recommendation balances weight range, adjustment reliability, and long-term value.',
+      'We bias toward models with clear use-case fit so buyers can pick faster with fewer regrets.',
+    ],
+    relatedGuideSlugs: ['dumbbells-vs-kettlebells', 'best-home-gym-for-small-spaces', 'best-weight-bench-for-beginners'],
+    relatedCategorySlugs: ['adjustable-dumbbells', 'benches', 'home-gym-systems'],
     faqs: [
       {
         question: 'Are adjustable dumbbells worth it compared to fixed dumbbells?',
@@ -103,7 +135,6 @@ export const guides: Guide[] = [
     conclusion:
       'For most people setting up a home gym, a quality adjustable dumbbell set under $300 is one of the best starting points available. Focus on weight range and adjustment speed for your specific training style, and do not over-optimize for specs you do not need yet. The Bowflex SelectTech 552 is the easiest recommendation for most users — fast, proven, and broadly available. If durability is the priority, the PowerBlock or Ironmaster sets are worth the extra investment.',
   },
-
   {
     slug: 'best-home-gym-for-small-spaces',
     title: 'Best Home Gym Setup for Small Spaces',
@@ -112,7 +143,7 @@ export const guides: Guide[] = [
     category: 'Setup Guide',
     categorySlug: 'home-gym-systems',
     readTime: '10 min read',
-    metaTitle: 'Best Home Gym for Small Spaces (2025 Guide)',
+    metaTitle: 'Best Home Gym for Small Spaces (2026 Guide)',
     metaDescription:
       'Build a complete home gym in a small space. Our picks for compact, versatile gear that maximizes a limited footprint without sacrificing training quality.',
     intro:
@@ -150,12 +181,25 @@ export const guides: Guide[] = [
           'Build around the equipment you will actually use most. For most people that means: adjustable dumbbells first, then an adjustable bench, then resistance bands or a compact rack if space allows.',
       },
     ],
-    relatedProductIds: [
-      'bowflex-selecttech-552',
-      'flybird-adjustable-bench',
-      'rep-fitness-pr-4000',
-      'bowflex-pr3000',
+    relatedProductIds: ['bowflex-selecttech-552', 'flybird-adjustable-bench', 'rep-fitness-pr-4000', 'bowflex-pr3000'],
+    featuredPickId: 'bowflex-selecttech-552',
+    quickSummary: {
+      forWho: 'Anyone building a useful home gym in apartments, garages, or spare-room footprints.',
+      bestPick: 'Start with adjustable dumbbells + an adjustable bench before adding bigger machines.',
+      skipIf: 'Skip full multi-station systems if you cannot dedicate permanent floor space.',
+      bullets: [
+        'Most compact high-impact stack: dumbbells + bench + floor mat.',
+        'Add a rack only if barbell training is a real priority.',
+        'Multi-use gear beats single-purpose machines in tight spaces.',
+      ],
+    },
+    methodology: [
+      'We score every recommendation by exercise coverage per square foot.',
+      'We favor setups that still feel usable day-to-day, not just possible on paper.',
+      'We prioritize expansion paths so first purchases stay useful later.',
     ],
+    relatedGuideSlugs: ['best-adjustable-dumbbells-under-300', 'best-weight-bench-for-beginners'],
+    relatedCategorySlugs: ['home-gym-systems', 'adjustable-dumbbells', 'benches'],
     faqs: [
       {
         question: 'What is the minimum space needed for a functional home gym?',
@@ -181,12 +225,10 @@ export const guides: Guide[] = [
     conclusion:
       'Building an effective home gym in a small space is mostly a prioritization exercise. Resist the urge to buy everything at once. Start with a quality adjustable dumbbell set and an adjustable bench — together they cover the majority of useful training movements in under 20 sq ft. Add from there as your training demands it. Compact, multi-use gear consistently outperforms large single-purpose machines in a limited footprint.',
   },
-
   {
     slug: 'dumbbells-vs-kettlebells',
     title: 'Dumbbells vs Kettlebells: Which Should You Buy?',
-    description:
-      'An honest comparison of both tools — when each makes sense and how to choose for your goals.',
+    description: 'An honest comparison of both tools — when each makes sense and how to choose for your goals.',
     category: 'Comparison',
     categorySlug: 'adjustable-dumbbells',
     readTime: '7 min read',
@@ -229,6 +271,24 @@ export const guides: Guide[] = [
       },
     ],
     relatedProductIds: ['bowflex-selecttech-552', 'powerblock-elite-exp', 'ironmaster-quick-lock'],
+    featuredPickId: 'bowflex-selecttech-552',
+    quickSummary: {
+      forWho: 'Buyers deciding what to buy first when they cannot purchase both tools yet.',
+      bestPick: 'Most people should start with adjustable dumbbells for versatility and progression.',
+      skipIf: 'Skip dumbbells-first only if your goal is primarily kettlebell conditioning circuits.',
+      bullets: [
+        'Dumbbells: better for structured strength and hypertrophy plans.',
+        'Kettlebells: better for ballistic conditioning and power-endurance circuits.',
+        'If budget is tight, buy the one that matches how you train today.',
+      ],
+    },
+    methodology: [
+      'We compare tools by training outcomes, not internet hype.',
+      'We weight progression and exercise coverage heavily for first-time buyers.',
+      'Recommendations focus on what gets used consistently in home setups.',
+    ],
+    relatedGuideSlugs: ['best-adjustable-dumbbells-under-300', 'best-home-gym-for-small-spaces'],
+    relatedCategorySlugs: ['adjustable-dumbbells', 'home-gym-systems'],
     faqs: [
       {
         question: 'Which is better for building muscle?',
@@ -254,7 +314,6 @@ export const guides: Guide[] = [
     conclusion:
       'For most people setting up a home gym, adjustable dumbbells are the more versatile first purchase. They cover more exercises, fit more training styles, and make progressive overload easier to manage over time. Kettlebells are an excellent complement once your basics are covered — or a strong starting point if ballistic conditioning training is specifically what you want. The two tools are not competitors; they serve different purposes well.',
   },
-
   {
     slug: 'best-weight-bench-for-beginners',
     title: 'Best Weight Bench for Beginners',
@@ -263,7 +322,7 @@ export const guides: Guide[] = [
     category: 'Buyer Guide',
     categorySlug: 'benches',
     readTime: '6 min read',
-    metaTitle: 'Best Weight Bench for Beginners (2025 Guide)',
+    metaTitle: 'Best Weight Bench for Beginners (2026 Guide)',
     metaDescription:
       'Find the best weight bench for beginners. Stable, adjustable options that pair well with dumbbells for a complete home gym starting point.',
     intro:
@@ -302,6 +361,24 @@ export const guides: Guide[] = [
       },
     ],
     relatedProductIds: ['rep-fitness-ab-3000', 'flybird-adjustable-bench', 'marcy-sb-261w'],
+    featuredPickId: 'rep-fitness-ab-3000',
+    quickSummary: {
+      forWho: 'First-time buyers who want a safe, stable bench that still fits home spaces.',
+      bestPick: 'REP Fitness AB-3000 for long-term stability and versatile incline options.',
+      skipIf: 'Skip premium fixed benches if you must fold and store after every workout.',
+      bullets: [
+        'Start with stability and pad quality before fancy extras.',
+        'Most beginners should choose adjustable over flat-only benches.',
+        'Weight rating should cover your bodyweight + load with headroom.',
+      ],
+    },
+    methodology: [
+      'We score benches on stability first because movement under load is a safety issue.',
+      'We prioritize adjustability and long-term comfort over flashy features.',
+      'We include budget options that still meet minimum durability standards.',
+    ],
+    relatedGuideSlugs: ['best-home-gym-for-small-spaces', 'best-adjustable-dumbbells-under-300'],
+    relatedCategorySlugs: ['benches', 'adjustable-dumbbells', 'home-gym-systems'],
     faqs: [
       {
         question: 'Do I need an adjustable bench or is a flat bench enough?',

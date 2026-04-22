@@ -1,12 +1,11 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { getCategoryBySlug, categories } from '@/data/categories'
+import { categories, getCategoryBySlug } from '@/data/categories'
 import { getGuidesBySlugs } from '@/data/guides'
-import { getProductsByCategory } from '@/data/products'
+import { getProductsByCategory, getProductsByIds } from '@/data/products'
 import ProductCard from '@/components/ui/ProductCard'
 import ArticleCard from '@/components/ui/ArticleCard'
-import SectionHeader from '@/components/ui/SectionHeader'
 
 interface Props {
   params: { slug: string }
@@ -38,108 +37,101 @@ export default function CategoryPage({ params }: Props) {
   if (!category) notFound()
 
   const relatedGuides = getGuidesBySlugs(category.relatedGuideSlugs)
+  const relatedCategories = categories.filter((item) => category.relatedCategorySlugs.includes(item.slug))
   const categoryProducts = getProductsByCategory(category.slug)
+  const featuredProducts = getProductsByIds(category.featuredProductIds)
 
   return (
-    <div className="py-14">
+    <div className="py-14 bg-slate-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-xs text-slate-400 mb-8">
-          <Link href="/" className="hover:text-orange-500 transition-colors">
-            Home
-          </Link>
+          <Link href="/" className="hover:text-orange-400 transition-colors">Home</Link>
           <span>/</span>
-          <Link href="/categories" className="hover:text-orange-500 transition-colors">
-            Equipment
-          </Link>
+          <Link href="/categories" className="hover:text-orange-400 transition-colors">Equipment</Link>
           <span>/</span>
-          <span className="text-slate-600">{category.name}</span>
+          <span className="text-slate-200">{category.name}</span>
         </nav>
 
-        {/* Category Header */}
-        <div className="mb-12">
-          <div className="flex items-center gap-3 mb-4">
-            <span className="text-4xl" aria-hidden="true">
-              {category.icon}
-            </span>
-            <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 leading-tight">{category.name}</h1>
+        <section className="rounded-3xl border border-white/10 bg-gradient-to-br from-slate-900 to-slate-950 p-7 sm:p-10 mb-10">
+          <div className="flex items-center gap-3 mb-3">
+            <span className="text-4xl" aria-hidden="true">{category.icon}</span>
+            <h1 className="text-3xl sm:text-4xl font-black text-white leading-tight">{category.name} Hub</h1>
           </div>
-          <p className="text-base text-slate-600 leading-relaxed max-w-3xl">{category.overview}</p>
-        </div>
+          <p className="text-slate-300 max-w-3xl leading-relaxed mb-5">{category.overview}</p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
+            <div className="rounded-xl border border-white/10 bg-slate-900/60 p-3 text-slate-300">{relatedGuides.length} buying guide paths</div>
+            <div className="rounded-xl border border-white/10 bg-slate-900/60 p-3 text-slate-300">{categoryProducts.length} reviewed products</div>
+            <div className="rounded-xl border border-white/10 bg-slate-900/60 p-3 text-slate-300">Internal links to related hubs</div>
+          </div>
+        </section>
 
-        {/* Who Should Buy This */}
-        <div className="mb-12 p-7 bg-slate-50 rounded-xl border border-slate-200">
-          <h2 className="text-lg font-semibold text-slate-900 mb-4">Who should buy {category.name.toLowerCase()}?</h2>
-          <ul className="space-y-2.5">
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold text-white mb-4">Who this category is best for</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {category.useCases.map((useCase) => (
-              <li key={useCase} className="flex items-start gap-2.5 text-sm text-slate-600">
-                <span className="text-orange-500 mt-0.5 shrink-0" aria-hidden="true">
-                  →
-                </span>
-                {useCase}
-              </li>
+              <article key={useCase} className="rounded-2xl border border-white/10 bg-slate-900 p-4">
+                <p className="text-sm text-slate-200 leading-relaxed">{useCase}</p>
+              </article>
             ))}
-          </ul>
-        </div>
+          </div>
+        </section>
 
-        {/* Related Guides */}
         {relatedGuides.length > 0 && (
-          <div className="mb-14">
-            <SectionHeader
-              label="Related Guides"
-              title={`Buying Guides for ${category.name}`}
-              description="Structured advice to help you choose the right product for your specific situation."
-              align="left"
-            />
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-8">
+          <section className="mb-12">
+            <div className="flex items-end justify-between mb-6">
+              <h2 className="text-2xl font-bold text-white">Related buyer guides</h2>
+              <Link href="/guides" className="text-sm text-orange-400 hover:text-orange-300">All guides →</Link>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {relatedGuides.map((guide) => (
                 <ArticleCard key={guide.slug} guide={guide} />
               ))}
             </div>
-          </div>
+          </section>
         )}
 
-        {/* Products */}
+        {featuredProducts.length > 0 && (
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-white mb-5">Featured picks in this category</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              {featuredProducts.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          </section>
+        )}
+
         {categoryProducts.length > 0 && (
-          <div>
-            <SectionHeader
-              label="Top Picks"
-              title={`Best ${category.name}`}
-              description="Our reviewed picks for this category, ranked by overall value for home gym use."
-              align="left"
-            />
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mt-8">
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-white mb-5">More reviewed products</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
               {categoryProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
             </div>
-          </div>
+          </section>
         )}
 
-        {/* If no guides and products (empty category like squat-racks which has no guides yet) */}
-        {relatedGuides.length === 0 && categoryProducts.length === 0 && (
-          <div className="p-10 bg-slate-50 rounded-xl border border-slate-200 text-center">
-            <p className="text-base font-semibold text-slate-700">More content coming soon.</p>
-            <p className="text-sm text-slate-500 mt-2 max-w-md mx-auto">
-              We are actively building out guides and reviews for this category.
-            </p>
-          </div>
+        {relatedCategories.length > 0 && (
+          <section className="rounded-2xl border border-white/10 bg-slate-900 p-6 mb-8">
+            <h2 className="text-xl font-bold text-white mb-4">Neighboring category hubs</h2>
+            <div className="flex flex-wrap gap-3">
+              {relatedCategories.map((relatedCategory) => (
+                <Link
+                  key={relatedCategory.slug}
+                  href={`/categories/${relatedCategory.slug}`}
+                  className="inline-flex items-center rounded-full border border-white/15 px-4 py-2 text-sm text-slate-200 hover:border-orange-400/60 hover:text-orange-300"
+                >
+                  {relatedCategory.name}
+                </Link>
+              ))}
+            </div>
+          </section>
         )}
 
-        {/* Cross-link to guides index */}
-        <div className="mt-12 pt-8 border-t border-slate-100 flex items-center justify-between flex-wrap gap-4">
-          <Link
-            href="/categories"
-            className="text-sm text-slate-500 hover:text-orange-500 transition-colors"
-          >
-            ← Back to all categories
-          </Link>
-          <Link
-            href="/guides"
-            className="text-sm font-medium text-orange-500 hover:text-orange-600 transition-colors"
-          >
-            Browse all guides →
-          </Link>
+        <div className="pt-8 border-t border-white/10 flex items-center justify-between flex-wrap gap-4">
+          <Link href="/categories" className="text-sm text-slate-400 hover:text-orange-400 transition-colors">← Back to all categories</Link>
+          <Link href="/guides" className="text-sm font-medium text-orange-400 hover:text-orange-300 transition-colors">Browse all guides →</Link>
         </div>
       </div>
     </div>

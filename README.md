@@ -288,3 +288,65 @@ The more pages that rank, the more money comes in. That's why the whole thing is
 | `/affiliate-disclosure` | Affiliate disclosure |
 | `/sitemap.xml` | Auto-generated sitemap for Google |
 | `/robots.txt` | Auto-generated robots file |
+
+---
+
+## What This Site Is *Now* (dumb dude version)
+
+We upgraded LiftSetup from a simple content site into a **content hub system**.
+
+### In plain terms
+
+- Homepage now pushes people into buyer guides and category hubs fast.
+- Guide pages now answer "what should I buy" near the top instead of making people dig.
+- Category pages now work like mini-hubs with featured picks, related guides, and neighboring category links.
+- Internal linking is baked into the data model so scaling to more pages is way easier.
+
+### How to add a new scalable buyer guide now
+
+Open `data/guides.ts` and add one guide object with:
+
+- `featuredPickId`
+- `quickSummary`
+- `relatedProductIds`
+- `relatedGuideSlugs`
+- `relatedCategorySlugs`
+- `methodology`
+- `faqs`
+- `conclusion`
+
+That single object auto-fills the page structure:
+
+1. Hero + affiliate disclosure
+2. Best overall winner block
+3. Quick summary
+4. Top picks cards
+5. Comparison table
+6. Trust/methodology
+7. FAQ + verdict
+8. Related guides + related categories links
+
+### How category hubs work now
+
+Open `data/categories.ts` and update:
+
+- `relatedGuideSlugs`
+- `relatedCategorySlugs`
+- `featuredProductIds`
+
+The category page will automatically surface:
+
+- Related buyer guides
+- Featured picks
+- Neighboring category hubs
+- Full product list
+
+### Why this matters
+
+This gives us a repeatable affiliate SEO machine:
+
+- better scannability
+- better trust structure
+- better internal links
+- better conversion flow
+- less per-page custom coding
