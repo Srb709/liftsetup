@@ -5,6 +5,7 @@ import { getGuideBySlug, guides } from '@/data/guides'
 import { getProductsByIds } from '@/data/products'
 import { getCategoryBySlug } from '@/data/categories'
 import ProductCard from '@/components/ui/ProductCard'
+import AdjustableDumbbellsUnder300Page from '@/components/guides/AdjustableDumbbellsUnder300Page'
 
 interface Props {
   params: { slug: string }
@@ -18,15 +19,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const guide = getGuideBySlug(params.slug)
   if (!guide) return {}
 
+  const isMoneyPage = guide.slug === 'best-adjustable-dumbbells-under-300'
+
   return {
-    title: guide.metaTitle,
-    description: guide.metaDescription,
+    title: isMoneyPage
+      ? 'Best Adjustable Dumbbells Under $300 (2026 Buyer Guide) | LiftSetup'
+      : guide.metaTitle,
+    description: isMoneyPage
+      ? 'Best adjustable dumbbells under $300, ranked for real home gym buyers. Compare top picks fast by adjustment feel, compactness, and overall value.'
+      : guide.metaDescription,
     alternates: {
       canonical: `https://liftsetup.com/guides/${guide.slug}`,
     },
     openGraph: {
-      title: `${guide.metaTitle} | LiftSetup`,
-      description: guide.metaDescription,
+      title: isMoneyPage
+        ? 'Best Adjustable Dumbbells Under $300 (2026 Buyer Guide) | LiftSetup'
+        : `${guide.metaTitle} | LiftSetup`,
+      description: isMoneyPage
+        ? 'Best adjustable dumbbells under $300, ranked for real home gym buyers. Compare top picks fast by adjustment feel, compactness, and overall value.'
+        : guide.metaDescription,
     },
   }
 }
@@ -37,6 +48,10 @@ export default function GuidePage({ params }: Props) {
 
   const products = getProductsByIds(guide.relatedProductIds)
   const parentCategory = getCategoryBySlug(guide.categorySlug)
+
+  if (guide.slug === 'best-adjustable-dumbbells-under-300') {
+    return <AdjustableDumbbellsUnder300Page guide={guide} products={products} />
+  }
 
   return (
     <div className="py-14">
