@@ -126,7 +126,9 @@ export default function AdjustableDumbbellsUnder300Page({
             <span className="inline-flex px-3 py-1 rounded-full border border-orange-500/40 bg-orange-500/10 text-[11px] font-semibold tracking-[0.18em] uppercase text-orange-300 mb-4">
               Buyer Guide
             </span>
-            <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight mb-4">Best Adjustable Dumbbells Under $300</h1>
+            <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight text-white drop-shadow-[0_2px_10px_rgba(2,6,23,0.45)] mb-4">
+              Best Adjustable Dumbbells Under $300
+            </h1>
             <p className="text-sm sm:text-lg text-slate-300 max-w-3xl leading-relaxed mb-6">
               We compared the most popular adjustable dumbbells in this budget range to identify the sets that are easiest to use,
               most practical in small spaces, and strongest overall value for real home training.
