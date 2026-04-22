@@ -6,6 +6,8 @@ export interface Category {
   overview: string
   useCases: string[]
   relatedGuideSlugs: string[]
+  relatedCategorySlugs: string[]
+  featuredProductIds: string[]
   metaTitle: string
   metaDescription: string
 }
@@ -25,6 +27,8 @@ export const categories: Category[] = [
       'Anyone replacing a fixed dumbbell set that takes up too much room',
     ],
     relatedGuideSlugs: ['best-adjustable-dumbbells-under-300', 'dumbbells-vs-kettlebells'],
+    relatedCategorySlugs: ['benches', 'home-gym-systems'],
+    featuredProductIds: ['bowflex-selecttech-552', 'powerblock-elite-exp'],
     metaTitle: 'Best Adjustable Dumbbells – Reviews & Buyer Guide',
     metaDescription:
       'Find the best adjustable dumbbells for your home gym. Honest reviews comparing weight range, adjustment speed, build quality, and value.',
@@ -43,6 +47,8 @@ export const categories: Category[] = [
       'Home gym setups in a dedicated garage or basement with adequate space',
     ],
     relatedGuideSlugs: ['best-home-gym-for-small-spaces'],
+    relatedCategorySlugs: ['adjustable-dumbbells', 'benches', 'squat-racks'],
+    featuredProductIds: ['bowflex-pr3000', 'body-solid-g6b'],
     metaTitle: 'Best Home Gym Systems – Reviews & Buyer Guide',
     metaDescription:
       'Compare the top home gym systems and multi-station machines. Find the right setup for your space and goals.',
@@ -61,6 +67,8 @@ export const categories: Category[] = [
       'Smaller spaces where a folding bench is needed for storage',
     ],
     relatedGuideSlugs: ['best-weight-bench-for-beginners'],
+    relatedCategorySlugs: ['adjustable-dumbbells', 'home-gym-systems'],
+    featuredProductIds: ['rep-fitness-ab-3000', 'flybird-adjustable-bench'],
     metaTitle: 'Best Weight Benches – Reviews & Buyer Guide',
     metaDescription:
       'Find the best weight bench for your home gym. Reviews of flat, adjustable, and FID benches at every price point.',
@@ -78,7 +86,9 @@ export const categories: Category[] = [
       'People with garage or basement space for a permanent rack installation',
       'Intermediate to advanced lifters who have outgrown dumbbell-only training',
     ],
-    relatedGuideSlugs: [],
+    relatedGuideSlugs: ['best-home-gym-for-small-spaces'],
+    relatedCategorySlugs: ['home-gym-systems', 'benches'],
+    featuredProductIds: ['rogue-r3', 'rep-fitness-pr-4000'],
     metaTitle: 'Best Squat Racks – Reviews & Buyer Guide',
     metaDescription:
       'Compare the best squat racks and power cages for home gyms. Find the right rack for your ceiling height, budget, and space.',

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Hero from '@/components/home/Hero'
+import EditorsPicks from '@/components/home/EditorsPicks'
 import FeaturedCategories from '@/components/home/FeaturedCategories'
 import PopularGuides from '@/components/home/PopularGuides'
 import TrustSection from '@/components/home/TrustSection'
@@ -17,6 +18,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <EditorsPicks />
       <FeaturedCategories />
       <PopularGuides />
       <TrustSection />

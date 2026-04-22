@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { categories } from '@/data/categories'
-import SectionHeader from '@/components/ui/SectionHeader'
 
 export const metadata: Metadata = {
   title: 'Home Gym Equipment Categories',
@@ -19,67 +18,40 @@ export const metadata: Metadata = {
 
 export default function CategoriesPage() {
   return (
-    <div className="py-14">
+    <div className="py-14 bg-slate-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav className="flex items-center gap-2 text-xs text-slate-400 mb-8">
-          <Link href="/" className="hover:text-orange-500 transition-colors">
-            Home
-          </Link>
+          <Link href="/" className="hover:text-orange-400 transition-colors">Home</Link>
           <span>/</span>
-          <span className="text-slate-600">Equipment</span>
+          <span className="text-slate-200">Equipment</span>
         </nav>
 
-        <SectionHeader
-          label="Equipment Categories"
-          title="Browse by Equipment Type"
-          description="Every category page includes product reviews, honest comparisons, and buying advice specific to that type of equipment."
-          align="left"
-        />
+        <div className="mb-10">
+          <p className="text-[11px] uppercase tracking-[0.15em] text-orange-400 font-semibold mb-2">Category Hubs</p>
+          <h1 className="text-3xl sm:text-5xl font-black text-white mb-3">Find your next gear category</h1>
+          <p className="text-slate-300 max-w-3xl">Each category hub includes buyer guides, featured picks, and internal links to related equipment so users can compare options quickly.</p>
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10">
           {categories.map((category) => (
             <Link
               key={category.slug}
               href={`/categories/${category.slug}`}
-              className="group flex flex-col p-7 bg-white rounded-xl border border-slate-200 hover:border-orange-200 hover:shadow-md transition-all duration-200"
+              className="group flex flex-col p-7 bg-slate-900 rounded-xl border border-white/10 hover:border-orange-400/40 transition-all"
             >
               <div className="flex items-center gap-3 mb-3">
-                <span className="text-3xl" aria-hidden="true">
-                  {category.icon}
-                </span>
-                <h2 className="text-lg font-semibold text-slate-900 group-hover:text-orange-600 transition-colors">
-                  {category.name}
-                </h2>
+                <span className="text-3xl" aria-hidden="true">{category.icon}</span>
+                <h2 className="text-lg font-semibold text-white group-hover:text-orange-300 transition-colors">{category.name}</h2>
               </div>
 
-              <p className="text-sm text-slate-500 leading-relaxed mb-4">{category.overview}</p>
+              <p className="text-sm text-slate-300 leading-relaxed mb-4">{category.description}</p>
 
               <div className="mt-auto flex items-center justify-between">
-                <span className="text-sm font-medium text-orange-500 group-hover:text-orange-600 transition-colors">
-                  Browse {category.name} →
-                </span>
-                <span className="text-xs text-slate-400">
-                  {category.relatedGuideSlugs.length > 0
-                    ? `${category.relatedGuideSlugs.length} guide${category.relatedGuideSlugs.length > 1 ? 's' : ''}`
-                    : 'Reviews'}
-                </span>
+                <span className="text-sm font-medium text-orange-400 group-hover:text-orange-300 transition-colors">Browse hub →</span>
+                <span className="text-xs text-slate-500">{category.relatedGuideSlugs.length} guides</span>
               </div>
             </Link>
           ))}
-        </div>
-
-        <div className="mt-14 p-7 bg-slate-50 rounded-xl border border-slate-200">
-          <h2 className="text-base font-semibold text-slate-900 mb-2">Not sure where to start?</h2>
-          <p className="text-sm text-slate-500 leading-relaxed mb-4">
-            If you are building your first home gym, adjustable dumbbells and a quality bench cover the most ground in
-            the least space. Browse our setup guides for a more structured starting point.
-          </p>
-          <Link
-            href="/guides"
-            className="inline-flex items-center text-sm font-medium text-orange-500 hover:text-orange-600 transition-colors"
-          >
-            Browse setup guides →
-          </Link>
         </div>
       </div>
     </div>
