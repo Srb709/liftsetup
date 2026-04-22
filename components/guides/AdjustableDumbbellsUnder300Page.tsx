@@ -102,9 +102,9 @@ export default function AdjustableDumbbellsUnder300Page({
   if (!topPick) return null
 
   return (
-    <div className="py-8 sm:py-12">
+    <div className="py-8 sm:py-12 bg-slate-950">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <nav className="flex items-center gap-2 text-xs text-slate-500 mb-8">
+        <nav className="flex items-center gap-2 text-xs text-slate-400 mb-8">
           <Link href="/" className="hover:text-orange-500 transition-colors">
             Home
           </Link>
@@ -117,7 +117,7 @@ export default function AdjustableDumbbellsUnder300Page({
             Adjustable Dumbbells
           </Link>
           <span>/</span>
-          <span className="text-slate-900 truncate max-w-[180px]">{guide.title}</span>
+          <span className="text-slate-100 truncate max-w-[180px]">{guide.title}</span>
         </nav>
 
         <section className="relative overflow-hidden rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-slate-100 p-6 sm:p-10 mb-8">
@@ -135,19 +135,19 @@ export default function AdjustableDumbbellsUnder300Page({
               Independent recommendations based on usability, build confidence, and long-term value for home gym buyers.
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
-              <div className="rounded-xl border border-slate-700 bg-slate-900/70 p-3">
+              <div className="rounded-xl border border-slate-700 bg-slate-900/75 p-3">
                 <p className="text-[10px] uppercase tracking-widest text-slate-400 mb-1">Budget Cap</p>
                 <p className="text-sm font-semibold text-white">Under $300 focus</p>
               </div>
-              <div className="rounded-xl border border-slate-700 bg-slate-900/70 p-3">
+              <div className="rounded-xl border border-slate-700 bg-slate-900/75 p-3">
                 <p className="text-[10px] uppercase tracking-widest text-slate-400 mb-1">Top Picks</p>
                 <p className="text-sm font-semibold text-white">4 proven options</p>
               </div>
-              <div className="rounded-xl border border-slate-700 bg-slate-900/70 p-3">
+              <div className="rounded-xl border border-slate-700 bg-slate-900/75 p-3">
                 <p className="text-[10px] uppercase tracking-widest text-slate-400 mb-1">Priorities</p>
                 <p className="text-sm font-semibold text-white">Speed, value, footprint</p>
               </div>
-              <div className="rounded-xl border border-slate-700 bg-slate-900/70 p-3">
+              <div className="rounded-xl border border-slate-700 bg-slate-900/75 p-3">
                 <p className="text-[10px] uppercase tracking-widest text-slate-400 mb-1">Read Time</p>
                 <p className="text-sm font-semibold text-white">{guide.readTime}</p>
               </div>
@@ -169,39 +169,39 @@ export default function AdjustableDumbbellsUnder300Page({
           </div>
         </section>
 
-        <section className="mb-8 rounded-3xl border border-orange-200/70 bg-gradient-to-br from-orange-50 to-white p-5 sm:p-8">
+        <section className="mb-8 rounded-3xl border border-slate-700 bg-slate-900 p-5 sm:p-8">
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
             <div className="max-w-2xl">
-              <p className="text-xs font-semibold tracking-[0.2em] uppercase text-orange-500 mb-2">Best Overall Pick</p>
-              <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-900 mb-3">{topPick.name}</h2>
-              <p className="text-sm text-slate-600 leading-relaxed mb-4">{topPick.shortDescription}</p>
-              <div className="rounded-xl bg-white border border-orange-100 p-4 mb-4">
-                <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-slate-500 mb-1">Why it wins</p>
-                <p className="text-sm text-slate-700 leading-relaxed">
+              <p className="text-xs font-semibold tracking-[0.2em] uppercase text-orange-400 mb-2">Best Overall Pick</p>
+              <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-100 mb-3">{topPick.name}</h2>
+              <p className="text-sm text-slate-300 leading-relaxed mb-4">{topPick.shortDescription}</p>
+              <div className="rounded-xl bg-slate-950 border border-slate-700 p-4 mb-4">
+                <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-slate-400 mb-1">Why it wins</p>
+                <p className="text-sm text-slate-200 leading-relaxed">
                   It balances fast adjustment, practical range for most home workouts, and a compact footprint that fits small training spaces.
                 </p>
               </div>
-              <p className="text-sm text-slate-700">
-                <span className="font-semibold text-slate-900">Best for: </span>
+              <p className="text-sm text-slate-300">
+                <span className="font-semibold text-slate-100">Best for: </span>
                 {topPick.bestFor}
               </p>
             </div>
 
-            <div className="lg:w-[360px] rounded-2xl border border-slate-200 bg-white p-5">
-              <h3 className="text-sm font-bold text-slate-900 mb-3">Quick Pros</h3>
+            <div className="lg:w-[360px] rounded-2xl border border-slate-700 bg-slate-950 p-5">
+              <h3 className="text-sm font-bold text-slate-100 mb-3">Quick Pros</h3>
               <ul className="space-y-2 mb-4">
                 {topPick.pros.slice(0, 3).map((pro) => (
-                  <li key={pro} className="text-sm text-slate-600 flex gap-2">
-                    <span className="text-emerald-600 font-bold">+</span>
+                  <li key={pro} className="text-sm text-slate-300 flex gap-2">
+                    <span className="text-orange-400 font-bold">+</span>
                     <span>{pro}</span>
                   </li>
                 ))}
               </ul>
-              <h3 className="text-sm font-bold text-slate-900 mb-2">Trade-offs</h3>
+              <h3 className="text-sm font-bold text-slate-100 mb-2">Trade-offs</h3>
               <ul className="space-y-2 mb-5">
                 {topPick.cons.slice(0, 2).map((con) => (
-                  <li key={con} className="text-sm text-slate-600 flex gap-2">
-                    <span className="text-rose-600 font-bold">−</span>
+                  <li key={con} className="text-sm text-slate-300 flex gap-2">
+                    <span className="text-slate-500 font-bold">−</span>
                     <span>{con}</span>
                   </li>
                 ))}
@@ -210,7 +210,7 @@ export default function AdjustableDumbbellsUnder300Page({
                 href={withAffiliateTag(topPick.affiliateUrl)}
                 target="_blank"
                 rel="noopener noreferrer nofollow"
-                className="inline-flex w-full items-center justify-center rounded-xl bg-slate-900 px-4 py-3 text-sm font-bold text-white hover:bg-slate-700 transition-colors"
+                className="inline-flex w-full items-center justify-center rounded-xl bg-orange-500 px-4 py-3 text-sm font-bold text-white hover:bg-orange-600 transition-colors"
               >
                 Check Price on Amazon
               </a>
@@ -219,24 +219,24 @@ export default function AdjustableDumbbellsUnder300Page({
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">Who this page is for</h2>
+          <h2 className="text-2xl font-bold text-slate-100 mb-4">Who this page is for</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {buyerProfiles.map((profile) => (
-              <article key={profile.title} className="rounded-2xl border border-slate-200 bg-white p-4">
-                <h3 className="text-sm font-semibold text-slate-900 mb-2">{profile.title}</h3>
-                <p className="text-sm text-slate-600 leading-relaxed">{profile.description}</p>
+              <article key={profile.title} className="rounded-2xl border border-slate-700 bg-slate-900 p-4">
+                <h3 className="text-sm font-semibold text-slate-100 mb-2">{profile.title}</h3>
+                <p className="text-sm text-slate-300 leading-relaxed">{profile.description}</p>
               </article>
             ))}
           </div>
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">What to look for before you buy</h2>
+          <h2 className="text-2xl font-bold text-slate-100 mb-4">What to look for before you buy</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {guide.whatMatters.slice(0, 6).map((item) => (
-              <article key={item.title} className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-                <h3 className="text-sm font-semibold text-slate-900 mb-2">{item.title}</h3>
-                <p className="text-sm text-slate-600 leading-relaxed">{item.description}</p>
+              <article key={item.title} className="rounded-2xl border border-slate-700 bg-slate-900 p-4">
+                <h3 className="text-sm font-semibold text-slate-100 mb-2">{item.title}</h3>
+                <p className="text-sm text-slate-300 leading-relaxed">{item.description}</p>
               </article>
             ))}
           </div>
@@ -245,44 +245,44 @@ export default function AdjustableDumbbellsUnder300Page({
         <section id="top-picks" className="scroll-mt-24 mb-12">
           <div className="flex items-end justify-between mb-5 gap-3">
             <div>
-              <h2 className="text-2xl font-bold text-slate-900 mb-1">Top picks under $300</h2>
-              <p className="text-sm text-slate-600">Ranked for practical value, daily usability, and compact home gym fit.</p>
+              <h2 className="text-2xl font-bold text-slate-100 mb-1">Top picks under $300</h2>
+              <p className="text-sm text-slate-300">Ranked for practical value, daily usability, and compact home gym fit.</p>
             </div>
           </div>
           <div className="space-y-5">
             {topPicks.map((product, index) => (
-              <article key={product.id} className="rounded-3xl border border-slate-200 bg-white p-5 sm:p-6">
+              <article key={product.id} className="rounded-3xl border border-slate-700 bg-slate-900 p-5 sm:p-6">
                 <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-5">
                   <div className="max-w-3xl">
                     <div className="flex flex-wrap items-center gap-2 mb-3">
-                      <span className="inline-flex items-center justify-center h-7 min-w-7 px-2 rounded-full bg-slate-900 text-white text-xs font-bold">
+                      <span className="inline-flex items-center justify-center h-7 min-w-7 px-2 rounded-full bg-slate-950 text-white text-xs font-bold">
                         #{index + 1}
                       </span>
-                      <span className="inline-flex px-2.5 py-1 rounded-full bg-orange-50 text-orange-600 text-[11px] font-bold tracking-wide">
+                      <span className="inline-flex px-2.5 py-1 rounded-full bg-orange-500/15 text-orange-300 border border-orange-500/30 text-[11px] font-bold tracking-wide">
                         {pickBadges[product.id] ?? product.badge ?? 'Top Pick'}
                       </span>
-                      <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">{product.brand}</span>
+                      <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-400">{product.brand}</span>
                     </div>
-                    <h3 className="text-xl font-bold text-slate-900 mb-2">{product.name}</h3>
-                    <p className="text-sm text-slate-600 leading-relaxed mb-4">{product.shortDescription}</p>
-                    <p className="text-sm text-slate-700 mb-4">
-                      <span className="font-semibold text-slate-900">Best for: </span>
+                    <h3 className="text-xl font-bold text-slate-100 mb-2">{product.name}</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-4">{product.shortDescription}</p>
+                    <p className="text-sm text-slate-300 mb-4">
+                      <span className="font-semibold text-slate-100">Best for: </span>
                       {product.bestFor}
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div className="rounded-xl border border-emerald-100 bg-emerald-50 p-3">
-                        <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-emerald-700 mb-2">Pros</p>
+                      <div className="rounded-xl border border-slate-600 bg-slate-950/70 p-3">
+                        <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-orange-300 mb-2">Pros</p>
                         <ul className="space-y-2">
                           {product.pros.map((pro) => (
-                            <li key={pro} className="text-sm text-emerald-900">{pro}</li>
+                            <li key={pro} className="text-sm text-slate-200">{pro}</li>
                           ))}
                         </ul>
                       </div>
-                      <div className="rounded-xl border border-rose-100 bg-rose-50 p-3">
-                        <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-rose-700 mb-2">Cons</p>
+                      <div className="rounded-xl border border-slate-600 bg-slate-950/70 p-3">
+                        <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-slate-400 mb-2">Cons</p>
                         <ul className="space-y-2">
                           {product.cons.map((con) => (
-                            <li key={con} className="text-sm text-rose-900">{con}</li>
+                            <li key={con} className="text-sm text-slate-300">{con}</li>
                           ))}
                         </ul>
                       </div>
@@ -293,7 +293,7 @@ export default function AdjustableDumbbellsUnder300Page({
                       href={withAffiliateTag(product.affiliateUrl)}
                       target="_blank"
                       rel="noopener noreferrer nofollow"
-                      className="inline-flex w-full items-center justify-center rounded-xl bg-slate-900 px-4 py-3 text-sm font-bold text-white hover:bg-orange-500 transition-colors"
+                      className="inline-flex w-full items-center justify-center rounded-xl bg-orange-500 px-4 py-3 text-sm font-bold text-white hover:bg-orange-600 transition-colors"
                     >
                       Check Price
                     </a>
@@ -305,10 +305,10 @@ export default function AdjustableDumbbellsUnder300Page({
         </section>
 
         <section id="comparison" className="scroll-mt-24 mb-12">
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">Quick comparison</h2>
-          <div className="overflow-x-auto rounded-2xl border border-slate-200 bg-white hidden md:block">
+          <h2 className="text-2xl font-bold text-slate-100 mb-4">Quick comparison</h2>
+          <div className="overflow-x-auto rounded-2xl border border-slate-700 bg-slate-900 hidden md:block">
             <table className="min-w-full text-sm">
-              <thead className="bg-slate-900 text-slate-100">
+              <thead className="bg-slate-950 text-slate-100">
                 <tr>
                   <th className="text-left p-4 font-semibold">Compare</th>
                   {topPicks.map((product) => (
@@ -320,10 +320,10 @@ export default function AdjustableDumbbellsUnder300Page({
               </thead>
               <tbody>
                 {comparisonRows.map((row) => (
-                  <tr key={row.label} className="border-t border-slate-100 align-top">
-                    <td className="p-4 font-semibold text-slate-900">{row.label}</td>
+                  <tr key={row.label} className="border-t border-slate-700 align-top">
+                    <td className="p-4 font-semibold text-slate-100">{row.label}</td>
                     {topPicks.map((product) => (
-                      <td key={`${row.label}-${product.id}`} className="p-4 text-slate-600 leading-relaxed">
+                      <td key={`${row.label}-${product.id}`} className="p-4 text-slate-300 leading-relaxed">
                         {row.values[product.id as keyof typeof row.values]}
                       </td>
                     ))}
@@ -335,13 +335,13 @@ export default function AdjustableDumbbellsUnder300Page({
 
           <div className="space-y-3 md:hidden">
             {topPicks.map((product) => (
-              <article key={`mobile-${product.id}`} className="rounded-2xl border border-slate-200 bg-white p-4">
-                <h3 className="text-sm font-bold text-slate-900 mb-3">{product.name}</h3>
+              <article key={`mobile-${product.id}`} className="rounded-2xl border border-slate-700 bg-slate-900 p-4">
+                <h3 className="text-sm font-bold text-slate-100 mb-3">{product.name}</h3>
                 <dl className="space-y-2">
                   {comparisonRows.map((row) => (
                     <div key={`${product.id}-${row.label}`}>
-                      <dt className="text-[11px] uppercase tracking-wide text-slate-500">{row.label}</dt>
-                      <dd className="text-sm text-slate-700">{row.values[product.id as keyof typeof row.values]}</dd>
+                      <dt className="text-[11px] uppercase tracking-wide text-slate-400">{row.label}</dt>
+                      <dd className="text-sm text-slate-300">{row.values[product.id as keyof typeof row.values]}</dd>
                     </div>
                   ))}
                 </dl>
@@ -350,13 +350,13 @@ export default function AdjustableDumbbellsUnder300Page({
           </div>
         </section>
 
-        <section className="mb-12 rounded-2xl border border-slate-200 bg-slate-50 p-5 sm:p-6">
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">How we chose these picks</h2>
+        <section className="mb-12 rounded-2xl border border-slate-700 bg-slate-900 p-5 sm:p-6">
+          <h2 className="text-2xl font-bold text-slate-100 mb-4">How we chose these picks</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {howWeChose.map((item) => (
-              <article key={item.title} className="rounded-xl border border-slate-200 bg-white p-4">
-                <h3 className="text-sm font-semibold text-slate-900 mb-2">{item.title}</h3>
-                <p className="text-sm text-slate-600 leading-relaxed">{item.description}</p>
+              <article key={item.title} className="rounded-xl border border-slate-700 bg-slate-950 p-4">
+                <h3 className="text-sm font-semibold text-slate-100 mb-2">{item.title}</h3>
+                <p className="text-sm text-slate-300 leading-relaxed">{item.description}</p>
               </article>
             ))}
           </div>
@@ -398,38 +398,38 @@ export default function AdjustableDumbbellsUnder300Page({
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-slate-900 mb-5">Frequently asked questions</h2>
+          <h2 className="text-2xl font-bold text-slate-100 mb-5">Frequently asked questions</h2>
           <div className="space-y-3">
             {guide.faqs.map((faq) => (
-              <article key={faq.question} className="rounded-2xl border border-slate-200 bg-white p-4 sm:p-5">
-                <h3 className="text-base font-semibold text-slate-900 mb-2">{faq.question}</h3>
-                <p className="text-sm text-slate-600 leading-relaxed">{faq.answer}</p>
+              <article key={faq.question} className="rounded-2xl border border-slate-700 bg-slate-900 p-4 sm:p-5">
+                <h3 className="text-base font-semibold text-slate-100 mb-2">{faq.question}</h3>
+                <p className="text-sm text-slate-300 leading-relaxed">{faq.answer}</p>
               </article>
             ))}
           </div>
         </section>
 
-        <section className="border-t border-slate-200 pt-8">
-          <h2 className="text-lg font-semibold text-slate-900 mb-3">Keep researching</h2>
-          <p className="text-sm text-slate-600 mb-4">
+        <section className="border-t border-slate-800 pt-8">
+          <h2 className="text-lg font-semibold text-slate-100 mb-3">Keep researching</h2>
+          <p className="text-sm text-slate-300 mb-4">
             Want more context before you buy? Explore our full category hub and related guides.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link
               href="/categories/adjustable-dumbbells"
-              className="inline-flex items-center rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-800 hover:border-orange-500 hover:text-orange-600 transition-colors"
+              className="inline-flex items-center rounded-lg border border-slate-600 bg-slate-900 px-4 py-2 text-sm font-semibold text-slate-100 hover:border-orange-500 hover:text-orange-300 transition-colors"
             >
               Adjustable Dumbbells Category
             </Link>
             <Link
               href="/guides/dumbbells-vs-kettlebells"
-              className="inline-flex items-center rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-800 hover:border-orange-500 hover:text-orange-600 transition-colors"
+              className="inline-flex items-center rounded-lg border border-slate-600 bg-slate-900 px-4 py-2 text-sm font-semibold text-slate-100 hover:border-orange-500 hover:text-orange-300 transition-colors"
             >
               Dumbbells vs Kettlebells
             </Link>
             <Link
               href="/guides/best-home-gym-for-small-spaces"
-              className="inline-flex items-center rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-800 hover:border-orange-500 hover:text-orange-600 transition-colors"
+              className="inline-flex items-center rounded-lg border border-slate-600 bg-slate-900 px-4 py-2 text-sm font-semibold text-slate-100 hover:border-orange-500 hover:text-orange-300 transition-colors"
             >
               Best Home Gym for Small Spaces
             </Link>
