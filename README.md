@@ -94,16 +94,22 @@ Open `data/categories.ts` and add a new object to the array:
   name: 'Resistance Bands',
   description: 'Lightweight and versatile for any space.',
   icon: '🔴',
+  overview: 'Resistance bands are one of the cheapest and most space-efficient tools you can add...',
+  useCases: [
+    'People who want to train without any heavy equipment',
+    'Anyone adding mobility or warm-up work to their routine',
+  ],
+  relatedGuideSlugs: [],
   metaTitle: 'Best Resistance Bands – Reviews & Buyer Guide',
   metaDescription: 'Find the best resistance bands for home workouts...',
 }
 ```
 
-That's it. The page at `/categories/resistance-bands` gets created automatically, and it shows up in the sitemap automatically.
+That's it. The page at `/categories/resistance-bands` gets created automatically and shows up in the sitemap.
 
 ### Add a new guide
 
-Open `data/guides.ts` and add a new object:
+Open `data/guides.ts` and add a new object. The guide needs all the content fields now — this is what makes the full article page render:
 
 ```ts
 {
@@ -111,13 +117,126 @@ Open `data/guides.ts` and add a new object:
   title: 'Best Home Gym Setup Under $500',
   description: 'You don\'t need to spend a fortune to build a solid home gym.',
   category: 'Buyer Guide',
+  categorySlug: 'adjustable-dumbbells',
   readTime: '9 min read',
   metaTitle: 'Best Home Gym Under $500 (2025 Guide)',
   metaDescription: 'Build a complete home gym for under $500...',
+  intro: 'Opening paragraph that explains what this guide covers...',
+  whoItIsFor: [
+    'People with a $500 total budget',
+    'First-time home gym builders',
+  ],
+  whatMatters: [
+    { title: 'Budget allocation', description: 'Spend most of it on the thing you use most.' },
+  ],
+  relatedProductIds: ['bowflex-selecttech-552', 'flybird-adjustable-bench'],
+  faqs: [
+    { question: 'Can you build a real gym for $500?', answer: 'Yes, if you prioritize...' },
+  ],
+  conclusion: 'Closing paragraph summarizing the recommendation...',
 }
 ```
 
-Page at `/guides/home-gym-under-500` exists automatically.
+Page at `/guides/home-gym-under-500` exists automatically with the full article layout.
+
+### Add a new product
+
+Open `data/products.ts` and add a new object:
+
+```ts
+{
+  id: 'some-unique-id',
+  name: 'Product Name',
+  brand: 'Brand Name',
+  categorySlug: 'adjustable-dumbbells',
+  shortDescription: 'One sentence describing what this thing is.',
+  bestFor: 'Who this product is the right pick for',
+  pros: [
+    'First good thing about it',
+    'Second good thing about it',
+    'Third good thing about it',
+  ],
+  cons: [
+    'One honest downside',
+    'Another honest downside',
+  ],
+  affiliateUrl: 'https://www.amazon.com/s?k=Product+Name',
+  badge: 'Best Overall', // optional — leave it out if no badge
+}
+```
+
+The product shows up on its category page automatically. To show it in a guide, add its `id` to the `relatedProductIds` array of the relevant guide.
+
+---
+
+## The Affiliate Link System
+
+All Amazon links go through `lib/affiliate.ts`. You never hardcode an affiliate tag directly in a component.
+
+**To set your Amazon Associate tag:**
+
+Create a `.env.local` file in the root of the project:
+
+```
+NEXT_PUBLIC_AMAZON_TAG=yourtag-20
+```
+
+That's it. Every single Amazon link on the site will automatically use your tag. You don't have to touch any other file.
+
+The default tag is `liftsetup-20` and is used as a fallback if the env var isn't set.
+
+---
+
+## Updated Folder Structure
+
+```
+liftsetup/
+│
+├── app/
+│   ├── layout.tsx
+│   ├── page.tsx                       # Homepage
+│   ├── globals.css
+│   ├── robots.ts
+│   ├── sitemap.ts
+│   ├── not-found.tsx
+│   ├── about/page.tsx                 # NEW: About page
+│   ├── privacy/page.tsx               # NEW: Privacy policy
+│   ├── affiliate-disclosure/page.tsx  # NEW: Affiliate disclosure
+│   ├── categories/
+│   │   ├── page.tsx                   # NEW: All categories index
+│   │   └── [slug]/page.tsx            # Category page (now has real content)
+│   └── guides/
+│       ├── page.tsx                   # NEW: All guides index
+│       └── [slug]/page.tsx            # Guide page (now a full article)
+│
+├── components/
+│   ├── layout/
+│   │   ├── Header.tsx                 # Fixed: Equipment link now goes to /categories
+│   │   └── Footer.tsx
+│   ├── ui/
+│   │   ├── ArticleCard.tsx
+│   │   ├── ProductCard.tsx            # Updated: shows bestFor, pros, brand
+│   │   └── SectionHeader.tsx
+│   └── home/
+│       ├── Hero.tsx
+│       ├── FeaturedCategories.tsx
+│       ├── PopularGuides.tsx
+│       └── TrustSection.tsx
+│
+├── data/
+│   ├── categories.ts                  # Updated: overview, useCases, relatedGuideSlugs
+│   ├── guides.ts                      # Updated: full article content per guide
+│   └── products.ts                    # NEW: 13 products across 4 categories
+│
+├── lib/
+│   ├── affiliate.ts                   # NEW: centralized Amazon tag logic
+│   └── utils.ts
+│
+├── next.config.mjs
+├── tailwind.config.ts
+├── tsconfig.json
+└── package.json
+```
 
 ---
 
@@ -127,9 +246,10 @@ Page at `/guides/home-gym-under-500` exists automatically.
 - Canonical URLs so Google doesn't get confused about duplicate pages
 - Open Graph tags so links look good when shared on social
 - `robots.txt` tells Google it can crawl everything
-- `sitemap.xml` gives Google a map of every page on the site
+- `sitemap.xml` gives Google a map of every page on the site — updates automatically when you add content
 - Semantic HTML — one `<h1>` per page, proper heading hierarchy
 - All pages are statically generated (fast load = good for rankings)
+- Privacy and affiliate-disclosure pages are set to `noindex` so they don't waste crawl budget
 
 ---
 
@@ -148,18 +268,23 @@ The more pages that rank, the more money comes in. That's why the whole thing is
 
 ---
 
-## Current Pages
+## Current Pages (19 total)
 
 | URL | What it is |
 |---|---|
 | `/` | Homepage |
-| `/categories/adjustable-dumbbells` | Adjustable dumbbell category |
-| `/categories/home-gym-systems` | Home gym systems category |
-| `/categories/benches` | Weight benches category |
-| `/categories/squat-racks` | Squat racks category |
-| `/guides/best-adjustable-dumbbells-under-300` | Guide page |
-| `/guides/best-home-gym-for-small-spaces` | Guide page |
-| `/guides/dumbbells-vs-kettlebells` | Comparison guide |
-| `/guides/best-weight-bench-for-beginners` | Guide page |
+| `/categories` | All categories index |
+| `/categories/adjustable-dumbbells` | Adjustable dumbbells — overview, guides, 5 products |
+| `/categories/home-gym-systems` | Home gym systems — overview, guides, 3 products |
+| `/categories/benches` | Weight benches — overview, guides, 3 products |
+| `/categories/squat-racks` | Squat racks — overview, 3 products |
+| `/guides` | All guides index |
+| `/guides/best-adjustable-dumbbells-under-300` | Full buyer guide — 4 products |
+| `/guides/best-home-gym-for-small-spaces` | Full setup guide — 4 products |
+| `/guides/dumbbells-vs-kettlebells` | Full comparison guide — 3 products |
+| `/guides/best-weight-bench-for-beginners` | Full buyer guide — 3 products |
+| `/about` | About page |
+| `/privacy` | Privacy policy |
+| `/affiliate-disclosure` | Affiliate disclosure |
 | `/sitemap.xml` | Auto-generated sitemap for Google |
 | `/robots.txt` | Auto-generated robots file |
