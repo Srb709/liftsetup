@@ -5,13 +5,21 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   body {
-    @apply text-slate-800 antialiased;
+    @apply text-slate-700;
   }
 
-  h1,
+  /* Tighter tracking on heavy headings */
+  h1 {
+    @apply text-slate-900 tracking-tight;
+  }
+
   h2,
   h3,
   h4 {
@@ -22,5 +30,18 @@
 @layer utilities {
   .container-content {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Utility for prose-style article sections on guide pages */
+  .guide-prose p {
+    @apply text-base text-slate-600 leading-relaxed;
+  }
+
+  .guide-prose h2 {
+    @apply text-xl font-bold text-slate-900 mt-12 mb-4;
+  }
+
+  .guide-prose h3 {
+    @apply text-base font-bold text-slate-900 mt-6 mb-2;
   }
 }

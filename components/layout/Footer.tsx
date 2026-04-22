@@ -16,30 +16,34 @@ const guideLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-900 text-slate-400">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer className="bg-slate-950 text-slate-400 border-t border-white/5">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+
+          {/* Brand */}
           <div className="md:col-span-2">
-            <div className="flex items-center mb-3">
-              <span className="text-xl font-bold text-white">Lift</span>
-              <span className="text-xl font-bold text-orange-500">Setup</span>
-            </div>
-            <p className="text-sm text-slate-400 max-w-xs leading-relaxed">
-              Helping you build the perfect home gym without wasting money. Honest reviews, real comparisons, practical
-              guides.
+            <Link href="/" className="inline-flex items-center gap-0.5 mb-4">
+              <span className="text-lg font-black text-white tracking-tight">Lift</span>
+              <span className="text-lg font-black text-orange-500 tracking-tight">Setup</span>
+            </Link>
+            <p className="text-sm text-slate-500 max-w-xs leading-relaxed mb-4">
+              Honest reviews and buying guides for home gym equipment. We help you buy once and buy right.
             </p>
-            <p className="text-xs text-slate-600 mt-4 leading-relaxed max-w-xs">
-              LiftSetup participates in affiliate programs. We may earn a commission when you click links and make
-              purchases, at no additional cost to you.
+            <p className="text-xs text-slate-600 max-w-xs leading-relaxed">
+              LiftSetup participates in the Amazon Associates program. We earn a commission on qualifying purchases at no extra cost to you.
             </p>
           </div>
 
+          {/* Equipment */}
           <div>
-            <h3 className="text-xs font-semibold text-white uppercase tracking-wider mb-4">Equipment</h3>
-            <ul className="space-y-2.5 text-sm">
+            <h3 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">Equipment</h3>
+            <ul className="space-y-2.5">
               {equipmentLinks.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="hover:text-orange-400 transition-colors">
+                  <Link
+                    href={link.href}
+                    className="text-sm text-slate-500 hover:text-orange-400 transition-colors"
+                  >
                     {link.label}
                   </Link>
                 </li>
@@ -47,12 +51,16 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Guides */}
           <div>
-            <h3 className="text-xs font-semibold text-white uppercase tracking-wider mb-4">Guides</h3>
-            <ul className="space-y-2.5 text-sm">
+            <h3 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">Top Guides</h3>
+            <ul className="space-y-2.5">
               {guideLinks.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="hover:text-orange-400 transition-colors">
+                  <Link
+                    href={link.href}
+                    className="text-sm text-slate-500 hover:text-orange-400 transition-colors"
+                  >
                     {link.label}
                   </Link>
                 </li>
@@ -61,13 +69,14 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 pt-6 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
-          <p>© {new Date().getFullYear()} LiftSetup. All rights reserved.</p>
-          <div className="flex gap-5">
-            <Link href="/privacy" className="hover:text-slate-300 transition-colors">
+        {/* Bottom bar */}
+        <div className="mt-12 pt-6 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p className="text-xs text-slate-600">© {new Date().getFullYear()} LiftSetup. All rights reserved.</p>
+          <div className="flex gap-5 text-xs text-slate-600">
+            <Link href="/privacy" className="hover:text-slate-400 transition-colors">
               Privacy Policy
             </Link>
-            <Link href="/affiliate-disclosure" className="hover:text-slate-300 transition-colors">
+            <Link href="/affiliate-disclosure" className="hover:text-slate-400 transition-colors">
               Affiliate Disclosure
             </Link>
           </div>

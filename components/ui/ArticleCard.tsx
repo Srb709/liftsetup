@@ -5,43 +5,55 @@ interface ArticleCardProps {
   guide: Guide
 }
 
-const categoryColors: Record<string, string> = {
-  'Buyer Guide': 'text-blue-500',
-  'Setup Guide': 'text-green-500',
-  Comparison: 'text-purple-500',
+const categoryStyles: Record<string, { dot: string; label: string; border: string }> = {
+  'Buyer Guide': { dot: 'bg-blue-500', label: 'text-blue-600', border: 'group-hover:border-blue-200' },
+  'Setup Guide': { dot: 'bg-green-500', label: 'text-green-600', border: 'group-hover:border-green-200' },
+  Comparison: { dot: 'bg-purple-500', label: 'text-purple-600', border: 'group-hover:border-purple-200' },
 }
 
 export default function ArticleCard({ guide }: ArticleCardProps) {
-  const categoryColor = categoryColors[guide.category] ?? 'text-orange-500'
+  const style = categoryStyles[guide.category] ?? {
+    dot: 'bg-orange-500',
+    label: 'text-orange-600',
+    border: 'group-hover:border-orange-200',
+  }
 
   return (
     <Link
       href={`/guides/${guide.slug}`}
-      className="group flex flex-col bg-white rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg hover:border-orange-200 transition-all duration-200"
+      className={`group flex flex-col p-5 bg-white rounded-2xl border border-slate-200 ${style.border} hover:shadow-lg transition-all duration-300`}
     >
-      <div className="h-36 bg-gradient-to-br from-slate-800 to-slate-700 flex items-center justify-center select-none">
-        <span className="text-4xl" aria-hidden="true">
-          📋
+      {/* Category + read time */}
+      <div className="flex items-center gap-2 mb-3">
+        <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${style.dot}`} aria-hidden="true" />
+        <span className={`text-[10px] font-bold uppercase tracking-widest ${style.label}`}>
+          {guide.category}
         </span>
+        <span className="text-[10px] text-slate-400 ml-auto">{guide.readTime}</span>
       </div>
 
-      <div className="flex flex-col flex-1 p-5">
-        <div className="flex items-center justify-between mb-2">
-          <span className={`text-xs font-semibold uppercase tracking-wider ${categoryColor}`}>
-            {guide.category}
-          </span>
-          <span className="text-xs text-slate-400">{guide.readTime}</span>
-        </div>
+      {/* Title */}
+      <h3 className="text-sm font-bold text-slate-900 group-hover:text-orange-600 transition-colors leading-snug mb-2 flex-1">
+        {guide.title}
+      </h3>
 
-        <h3 className="text-sm font-semibold text-slate-900 mb-2 group-hover:text-orange-600 transition-colors leading-snug">
-          {guide.title}
-        </h3>
+      {/* Description */}
+      <p className="text-xs text-slate-500 leading-relaxed mb-4">{guide.description}</p>
 
-        <p className="text-xs text-slate-500 leading-relaxed flex-1">{guide.description}</p>
-
-        <span className="mt-3 text-xs font-medium text-orange-500 group-hover:text-orange-600 transition-colors">
+      {/* CTA */}
+      <div className="flex items-center justify-between">
+        <span className="text-xs font-bold text-orange-500 group-hover:text-orange-600 transition-colors">
           Read guide →
         </span>
+        <svg
+          className="w-3.5 h-3.5 text-slate-300 group-hover:text-orange-400 transition-colors"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
       </div>
     </Link>
   )

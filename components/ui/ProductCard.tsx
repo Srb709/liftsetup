@@ -7,51 +7,72 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const href = withAffiliateTag(product.affiliateUrl)
+  const initial = product.brand.charAt(0).toUpperCase()
 
   return (
-    <div className="flex flex-col bg-white rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow duration-200">
-      <div className="h-44 bg-slate-100 flex items-center justify-center select-none">
-        <span className="text-5xl" aria-hidden="true">
-          🏋️
-        </span>
-      </div>
+    <div className="group flex flex-col bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-xl hover:border-slate-300 transition-all duration-300">
 
-      <div className="flex flex-col flex-1 p-5">
-        {product.badge && (
-          <span className="inline-block self-start mb-2 px-2 py-0.5 bg-orange-100 text-orange-600 text-xs font-semibold rounded">
+      {/* Card visual header */}
+      <div className="relative h-40 bg-gradient-to-br from-slate-800 via-slate-900 to-slate-950 overflow-hidden flex items-end p-4">
+        {/* Giant decorative brand initial */}
+        <span
+          className="absolute -top-2 -right-2 text-[110px] font-black text-white/[0.04] select-none leading-none pointer-events-none"
+          aria-hidden="true"
+        >
+          {initial}
+        </span>
+
+        {/* Badge */}
+        {product.badge ? (
+          <span className="relative z-10 inline-flex px-2.5 py-1 bg-orange-500 text-white text-[10px] font-bold rounded-lg tracking-wide">
             {product.badge}
+          </span>
+        ) : (
+          <span className="relative z-10 inline-flex px-2.5 py-1 bg-white/8 text-slate-400 text-[10px] font-semibold rounded-lg border border-white/8 tracking-wide">
+            {product.brand}
           </span>
         )}
 
-        <p className="text-xs font-medium text-slate-400 uppercase tracking-wider">{product.brand}</p>
+        {/* Brand name — top right */}
+        <span className="absolute top-4 right-4 text-[9px] font-black text-slate-500 uppercase tracking-[0.15em]">
+          {product.brand}
+        </span>
+      </div>
 
-        <h3 className="text-sm font-semibold text-slate-900 mt-0.5 mb-2 leading-snug">{product.name}</h3>
+      {/* Card body */}
+      <div className="flex flex-col flex-1 p-5">
+        <h3 className="text-sm font-bold text-slate-900 mb-1 leading-snug">{product.name}</h3>
+        <p className="text-xs text-slate-500 leading-relaxed mb-4">{product.shortDescription}</p>
 
-        <p className="text-xs text-slate-500 leading-relaxed mb-3">{product.shortDescription}</p>
-
-        <div className="mb-3 px-3 py-2 bg-slate-50 rounded-lg border border-slate-100">
-          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-0.5">Best for</p>
-          <p className="text-xs text-slate-700 leading-relaxed">{product.bestFor}</p>
+        {/* Best for pill */}
+        <div className="mb-4 px-3 py-2.5 bg-orange-50 border border-orange-100 rounded-xl">
+          <p className="text-[9px] font-bold text-orange-500 uppercase tracking-widest mb-0.5">Best for</p>
+          <p className="text-xs text-slate-700 leading-snug">{product.bestFor}</p>
         </div>
 
-        <ul className="space-y-1 mb-4">
+        {/* Pros list */}
+        <ul className="space-y-2 mb-5">
           {product.pros.map((pro) => (
-            <li key={pro} className="flex items-start gap-1.5 text-xs text-slate-600">
-              <span className="text-green-500 mt-0.5 shrink-0" aria-hidden="true">
-                ✓
+            <li key={pro} className="flex items-start gap-2 text-xs text-slate-600">
+              <span className="shrink-0 mt-0.5 w-3.5 h-3.5 rounded-full bg-green-100 flex items-center justify-center">
+                <span className="text-green-600 text-[8px] font-black leading-none">✓</span>
               </span>
               {pro}
             </li>
           ))}
         </ul>
 
+        {/* CTA */}
         <a
           href={href}
           target="_blank"
           rel="noopener noreferrer nofollow"
-          className="mt-auto inline-flex items-center justify-center w-full px-4 py-2.5 bg-orange-500 text-white text-sm font-semibold rounded-lg hover:bg-orange-600 transition-colors"
+          className="mt-auto inline-flex items-center justify-center gap-2 w-full px-4 py-3 bg-slate-900 text-white text-xs font-bold rounded-xl group-hover:bg-orange-500 transition-colors duration-300"
         >
           Check Price on Amazon
+          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
         </a>
       </div>
     </div>
