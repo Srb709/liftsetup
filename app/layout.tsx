@@ -11,7 +11,6 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://liftsetup.com'),
   title: {
     default: 'LiftSetup – Best Home Gym Equipment Reviews & Guides',
     template: '%s | LiftSetup',
