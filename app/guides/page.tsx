@@ -17,81 +17,63 @@ export const metadata: Metadata = {
   },
 }
 
-const categoryColors: Record<string, { bg: string; text: string }> = {
-  'Buyer Guide': { bg: 'bg-blue-50', text: 'text-blue-600' },
-  'Setup Guide': { bg: 'bg-green-50', text: 'text-green-600' },
-  Comparison: { bg: 'bg-purple-50', text: 'text-purple-600' },
-}
-
 export default function GuidesPage() {
   return (
-    <div className="py-14">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <nav className="flex items-center gap-2 text-xs text-slate-400 mb-8">
-          <Link href="/" className="hover:text-orange-500 transition-colors">
+    <div className="bg-stone-100 py-14 sm:py-16">
+      <div className="container-content">
+        <nav className="mb-8 flex items-center gap-2 text-xs text-zinc-500">
+          <Link href="/" className="transition hover:text-accent-700">
             Home
           </Link>
           <span>/</span>
-          <span className="text-slate-600">Guides</span>
+          <span className="text-zinc-700">Guides</span>
         </nav>
 
-        <SectionHeader
-          label="All Guides"
-          title="Buyer Guides, Comparisons & Setup Advice"
-          description="Structured, research-backed guides to help you make the right equipment decision the first time."
-          align="left"
-        />
+        <section className="section-shell p-7 sm:p-10">
+          <SectionHeader
+            label="Guide library"
+            title="Buyer guides, comparisons, and setup paths"
+            description="Explore structured decision guides with clear recommendations, ranked picks, and practical context for budget, space, and training goals."
+            align="left"
+          />
+        </section>
 
-        <div className="mt-10 flex flex-col gap-5">
-          {guides.map((guide) => {
-            const colors = categoryColors[guide.category] ?? { bg: 'bg-orange-50', text: 'text-orange-600' }
-            return (
-              <Link
-                key={guide.slug}
-                href={`/guides/${guide.slug}`}
-                className="group flex flex-col sm:flex-row sm:items-start gap-4 p-6 bg-white rounded-xl border border-slate-200 hover:border-orange-200 hover:shadow-md transition-all duration-200"
-              >
-                <div className="shrink-0 w-full sm:w-48 h-28 bg-gradient-to-br from-slate-800 to-slate-700 rounded-lg flex items-center justify-center select-none">
-                  <span className="text-3xl" aria-hidden="true">
-                    📋
-                  </span>
+        <div className="mt-8 grid gap-5">
+          {guides.map((guide) => (
+            <Link
+              key={guide.slug}
+              href={`/guides/${guide.slug}`}
+              className="section-shell group flex flex-col gap-4 p-6 sm:flex-row sm:items-start"
+            >
+              <div className="flex h-28 w-full shrink-0 items-center justify-center rounded-xl border border-zinc-200 bg-zinc-100 sm:w-52">
+                <span className="chip">{guide.category}</span>
+              </div>
+
+              <div className="flex flex-1 flex-col">
+                <div className="mb-2 flex items-center justify-between text-xs text-zinc-500">
+                  <span className="font-medium uppercase tracking-[0.12em]">{guide.category}</span>
+                  <span>{guide.readTime}</span>
                 </div>
 
-                <div className="flex flex-col flex-1">
-                  <div className="flex items-center gap-3 mb-2">
-                    <span
-                      className={`inline-block px-2 py-0.5 rounded text-xs font-semibold ${colors.bg} ${colors.text}`}
-                    >
-                      {guide.category}
-                    </span>
-                    <span className="text-xs text-slate-400">{guide.readTime}</span>
-                  </div>
+                <h2 className="mb-2 text-xl font-semibold leading-snug text-zinc-950 transition group-hover:text-accent-700">
+                  {guide.title}
+                </h2>
 
-                  <h2 className="text-base font-semibold text-slate-900 group-hover:text-orange-600 transition-colors mb-1 leading-snug">
-                    {guide.title}
-                  </h2>
+                <p className="mb-4 text-sm leading-7 text-zinc-600">{guide.description}</p>
 
-                  <p className="text-sm text-slate-500 leading-relaxed mb-3">{guide.description}</p>
-
-                  <span className="text-sm font-medium text-orange-500 group-hover:text-orange-600 transition-colors">
-                    Read guide →
-                  </span>
-                </div>
-              </Link>
-            )
-          })}
+                <span className="mt-auto text-sm font-semibold text-accent-700">Read guide →</span>
+              </div>
+            </Link>
+          ))}
         </div>
 
-        <div className="mt-12 p-7 bg-slate-50 rounded-xl border border-slate-200">
-          <h2 className="text-base font-semibold text-slate-900 mb-2">Looking for equipment by type?</h2>
-          <p className="text-sm text-slate-500 leading-relaxed mb-4">
-            Browse by equipment category to see product reviews, comparisons, and category-specific buying advice.
+        <div className="section-shell mt-10 p-7 sm:p-8">
+          <h2 className="text-2xl font-semibold text-zinc-950">Need product hubs instead?</h2>
+          <p className="mt-2 max-w-3xl text-sm leading-7 text-zinc-600">
+            Browse equipment categories to see featured picks, connected guides, and product-level comparisons organized by training intent.
           </p>
-          <Link
-            href="/categories"
-            className="inline-flex items-center text-sm font-medium text-orange-500 hover:text-orange-600 transition-colors"
-          >
-            Browse equipment categories →
+          <Link href="/categories" className="btn-primary mt-5 bg-accent-600 hover:bg-accent-500">
+            Browse equipment categories
           </Link>
         </div>
       </div>

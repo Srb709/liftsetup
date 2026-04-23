@@ -5,14 +5,14 @@ export default function PopularGuides() {
   const latest = [...guides].slice(0, 6)
 
   return (
-    <section className="py-20 bg-slate-950">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-end justify-between mb-10">
+    <section className="bg-zinc-950 py-20">
+      <div className="container-content">
+        <div className="mb-10 flex items-end justify-between">
           <div>
-            <p className="text-[11px] font-bold text-orange-500 uppercase tracking-[0.12em] mb-1.5">Latest Buyer Guides</p>
-            <h2 className="text-3xl sm:text-4xl font-black text-white leading-tight">Scan, compare, decide fast</h2>
+            <span className="eyebrow border-zinc-700 bg-zinc-900 text-zinc-300">Latest buying guides</span>
+            <h2 className="mt-3 text-3xl font-semibold text-stone-100 sm:text-4xl">Fast-read breakdowns for smarter purchases</h2>
           </div>
-          <Link href="/guides" className="hidden sm:inline-flex text-sm font-bold text-slate-400 hover:text-orange-400 transition-colors">
+          <Link href="/guides" className="hidden text-sm font-semibold text-zinc-400 transition hover:text-accent-400 sm:inline-flex">
             All guides →
           </Link>
         </div>
@@ -22,14 +22,14 @@ export default function PopularGuides() {
             <Link
               key={guide.slug}
               href={`/guides/${guide.slug}`}
-              className="group grid grid-cols-[auto_1fr_auto] items-center gap-4 rounded-xl border border-white/10 bg-slate-900/80 px-4 py-4 hover:border-orange-400/40"
+              className="group grid grid-cols-[auto_1fr_auto] items-center gap-4 rounded-xl border border-zinc-800 bg-zinc-900/60 px-4 py-4 transition hover:border-accent-500/50"
             >
-              <span className="text-xs font-black text-slate-500 w-8">{String(index + 1).padStart(2, '0')}</span>
+              <span className="w-8 text-xs font-semibold text-zinc-500">{String(index + 1).padStart(2, '0')}</span>
               <div>
-                <h3 className="text-sm sm:text-base font-semibold text-white group-hover:text-orange-300 transition-colors">{guide.title}</h3>
-                <p className="text-xs text-slate-400 line-clamp-1">{guide.quickSummary.bestPick}</p>
+                <h3 className="text-sm font-medium text-stone-100 transition group-hover:text-accent-300 sm:text-base">{guide.title}</h3>
+                <p className="line-clamp-1 text-xs text-zinc-400">{guide.quickSummary.bestPick}</p>
               </div>
-              <span className="text-xs font-semibold text-orange-400">Read →</span>
+              <span className="text-xs font-semibold text-accent-300">Read</span>
             </Link>
           ))}
         </div>

@@ -2,140 +2,56 @@ import Link from 'next/link'
 
 export default function Hero() {
   return (
-    <section className="relative bg-slate-950 overflow-hidden">
-      {/* Subtle dot-grid texture */}
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage: 'radial-gradient(circle, rgba(148,163,184,0.1) 1px, transparent 1px)',
-          backgroundSize: '28px 28px',
-        }}
-        aria-hidden="true"
-      />
-
-      {/* Orange ambient glow — top right */}
-      <div
-        className="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full bg-orange-500 opacity-[0.06] blur-3xl pointer-events-none"
-        aria-hidden="true"
-      />
-
-      {/* Orange ambient glow — bottom left */}
-      <div
-        className="absolute -bottom-48 -left-24 w-[400px] h-[400px] rounded-full bg-orange-600 opacity-[0.04] blur-3xl pointer-events-none"
-        aria-hidden="true"
-      />
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-36">
-        <div className="grid lg:grid-cols-[1fr_460px] gap-16 xl:gap-24 items-center">
-
-          {/* ── Left: Text ── */}
+    <section className="border-b border-zinc-200 bg-zinc-950 py-20 sm:py-24">
+      <div className="container-content">
+        <div className="grid items-start gap-10 lg:grid-cols-[1fr_420px] lg:gap-16">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-orange-500/20 bg-orange-500/8 mb-8">
-              <span className="w-1.5 h-1.5 rounded-full bg-orange-400 shrink-0" aria-hidden="true" />
-              <span className="text-[11px] font-bold text-orange-400 uppercase tracking-[0.12em]">
-                Home Gym Equipment Guides
-              </span>
-            </div>
-
-            <h1 className="text-5xl sm:text-6xl lg:text-[74px] font-black text-white leading-[0.9] tracking-tight mb-8">
-              Build Your<br />
-              Perfect Home<br />
-              <span className="text-orange-500">Gym.</span>
+            <span className="eyebrow border-accent-400/40 bg-accent-500/15 text-amber-200">Independent home gym buyer's guides</span>
+            <h1 className="mt-6 max-w-3xl text-4xl font-semibold leading-tight text-stone-100 sm:text-6xl">
+              Premium equipment reviews for serious home gym decisions.
             </h1>
-
-            <p className="text-lg text-slate-400 leading-relaxed mb-10 max-w-[480px]">
-              Stop guessing. We cut through the noise on every major equipment decision — honest reviews, real comparisons, and zero fluff.
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-300">
+              LiftSetup helps you choose the right equipment with structured comparisons, clear trade-offs, and direct recommendations built for real home setups.
             </p>
 
-            <div className="flex flex-wrap gap-3">
-              <Link
-                href="/guides"
-                className="inline-flex items-center gap-2 px-7 py-4 bg-orange-500 text-white text-sm font-bold rounded-xl hover:bg-orange-400 transition-colors"
-              >
-                Browse Guides
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <Link href="/guides" className="btn-primary bg-accent-600 hover:bg-accent-500">
+                Explore buying guides
               </Link>
-              <Link
-                href="/categories"
-                className="inline-flex items-center gap-2 px-7 py-4 bg-white/6 text-white text-sm font-bold rounded-xl hover:bg-white/10 transition-colors border border-white/10"
-              >
-                Browse Equipment
+              <Link href="/categories" className="btn-secondary border-zinc-700 bg-zinc-900 text-stone-100 hover:border-zinc-500">
+                Browse equipment hubs
               </Link>
             </div>
 
-            {/* Stats */}
-            <div className="mt-14 pt-10 border-t border-white/6 grid grid-cols-3 gap-8 max-w-xs">
+            <div className="mt-12 grid max-w-xl grid-cols-3 gap-4 border-t border-zinc-800 pt-8">
               {[
-                { num: '200+', label: 'Products reviewed' },
-                { num: '50+', label: 'Buying guides' },
-                { num: '100%', label: 'Independent' },
-              ].map(({ num, label }) => (
-                <div key={label}>
-                  <div className="text-2xl font-black text-white">{num}</div>
-                  <div className="text-[11px] text-slate-500 mt-0.5 leading-tight">{label}</div>
+                { stat: '200+', label: 'Products reviewed' },
+                { stat: '50+', label: 'Guides & comparisons' },
+                { stat: '100%', label: 'Independent picks' },
+              ].map((item) => (
+                <div key={item.label}>
+                  <p className="text-2xl font-semibold text-stone-100">{item.stat}</p>
+                  <p className="mt-1 text-xs uppercase tracking-[0.12em] text-zinc-500">{item.label}</p>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* ── Right: Floating product card UI ── */}
-          <div className="hidden lg:block relative py-10 px-5">
-            {/* Main recommendation card */}
-            <div className="relative z-10 bg-slate-900 rounded-2xl border border-white/8 p-6 shadow-[0_0_0_1px_rgba(255,255,255,0.03),0_40px_80px_rgba(0,0,0,0.6)]">
-              <div className="flex items-center justify-between mb-5">
-                <span className="px-2.5 py-1 bg-orange-500 text-white text-xs font-bold rounded-lg tracking-wide">
-                  Best Overall
-                </span>
-                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">
-                  Adjustable Dumbbells
-                </span>
-              </div>
-
-              <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-0.5">Bowflex</p>
-              <h3 className="text-xl font-black text-white mb-3 leading-tight">SelectTech 552</h3>
-              <p className="text-sm text-slate-400 leading-relaxed mb-5">
-                Replaces 15 sets of fixed weights. Dial system adjusts in under 3 seconds. The most proven adjustable dumbbell on the market.
-              </p>
-
-              <div className="space-y-2.5 mb-5">
-                {[
-                  'Dial adjusts in under 3 seconds',
-                  'Replaces 15 pairs of dumbbells',
-                  'Compact tray footprint',
-                ].map((pro) => (
-                  <div key={pro} className="flex items-center gap-2.5">
-                    <span className="w-4 h-4 rounded-full bg-green-500/15 flex items-center justify-center shrink-0">
-                      <span className="text-green-400 text-[9px] font-black leading-none">✓</span>
-                    </span>
-                    <span className="text-xs text-slate-300">{pro}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="h-px bg-white/6 mb-4" />
-              <div className="flex items-center justify-between">
-                <span className="text-xs text-slate-500">Best for most home gyms</span>
-                <span className="text-xs font-bold text-orange-400">Check price →</span>
-              </div>
-            </div>
-
-            {/* Floating card — top right */}
-            <div className="absolute -top-2 -right-2 z-20 bg-slate-800/90 backdrop-blur-sm rounded-xl border border-white/8 p-4 shadow-2xl w-44">
-              <p className="text-[9px] font-bold text-slate-500 uppercase tracking-widest mb-1">Budget Pick</p>
-              <p className="text-sm font-bold text-white leading-snug">Yes4All Adjustable Dumbbells</p>
-              <p className="text-[11px] text-orange-400 font-semibold mt-1.5">Best entry-level →</p>
-            </div>
-
-            {/* Floating card — bottom left */}
-            <div className="absolute -bottom-2 -left-2 z-20 bg-slate-800/90 backdrop-blur-sm rounded-xl border border-white/8 p-4 shadow-2xl w-44">
-              <p className="text-[9px] font-bold text-slate-500 uppercase tracking-widest mb-1">Heavy Lifting</p>
-              <p className="text-sm font-bold text-white leading-snug">Ironmaster Quick-Lock 75lb</p>
-              <p className="text-[11px] text-orange-400 font-semibold mt-1.5">Best build quality →</p>
-            </div>
-          </div>
-
+          <aside className="section-shell border-zinc-800 bg-zinc-900 p-6">
+            <p className="chip border-accent-500/30 bg-accent-500/20 text-amber-100">Featured recommendation</p>
+            <h2 className="mt-4 text-2xl font-semibold text-stone-100">Best overall adjustable dumbbell</h2>
+            <p className="mt-3 text-sm leading-7 text-zinc-300">
+              Bowflex SelectTech 552 remains our default pick for most home gyms thanks to rapid adjustments, broad range, and proven reliability.
+            </p>
+            <ul className="mt-5 space-y-2.5 text-sm text-zinc-300">
+              <li className="flex items-start gap-2"><span className="mt-1 h-2 w-2 rounded-full bg-accent-400" />Fast dial adjustments</li>
+              <li className="flex items-start gap-2"><span className="mt-1 h-2 w-2 rounded-full bg-accent-400" />Replaces 15 dumbbell pairs</li>
+              <li className="flex items-start gap-2"><span className="mt-1 h-2 w-2 rounded-full bg-accent-400" />Strong fit for small spaces</li>
+            </ul>
+            <Link href="/guides/best-adjustable-dumbbells-under-300" className="btn-primary mt-6 w-full bg-stone-100 text-zinc-950 hover:bg-accent-500 hover:text-stone-100">
+              Read the full guide
+            </Link>
+          </aside>
         </div>
       </div>
     </section>

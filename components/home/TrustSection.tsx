@@ -3,42 +3,38 @@ const trustPoints = [
     number: '01',
     title: 'Unbiased Recommendations',
     description:
-      'We evaluate gear on real-world performance — not sponsorships or paid placements. Every recommendation comes with a clear reason.',
+      'Every pick includes a rationale and trade-offs. We prioritize practical fit, durability, and value over brand hype.',
   },
   {
     number: '02',
-    title: 'Clear, Direct Comparisons',
+    title: 'Decision-First Comparisons',
     description:
-      'Side-by-side breakdowns on the factors that actually matter: weight range, build quality, durability, and real-world value.',
+      'Guides are structured so readers can quickly identify the default pick, budget option, and premium upgrade path.',
   },
   {
     number: '03',
-    title: 'Built for Home Setups',
+    title: 'Built for Real Home Gyms',
     description:
-      'Every pick accounts for space constraints, realistic budgets, and actual use patterns. No gym-grade assumptions.',
+      'Our framework evaluates equipment against constraints that matter in real homes: space, noise, adjustability, and long-term use.',
   },
 ]
 
 export default function TrustSection() {
   return (
-    <section className="py-20 bg-white border-t border-slate-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        {/* Section header */}
-        <div className="mb-16">
-          <p className="text-[11px] font-bold text-orange-500 uppercase tracking-[0.12em] mb-1.5">Why LiftSetup</p>
-          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 leading-tight">Reviews You Can Trust</h2>
+    <section className="bg-stone-100 py-20">
+      <div className="container-content">
+        <div className="mb-12">
+          <span className="chip">Methodology</span>
+          <h2 className="mt-3 text-3xl font-semibold text-zinc-950 sm:text-4xl">A review process you can trust</h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
           {trustPoints.map((point) => (
-            <div key={point.number}>
-              <span className="block text-[80px] font-black text-slate-100 leading-none select-none mb-5" aria-hidden="true">
-                {point.number}
-              </span>
-              <h3 className="text-lg font-bold text-slate-900 mb-3">{point.title}</h3>
-              <p className="text-sm text-slate-500 leading-relaxed">{point.description}</p>
-            </div>
+            <article key={point.number} className="section-shell p-6">
+              <p className="text-4xl font-semibold text-zinc-300">{point.number}</p>
+              <h3 className="mt-4 text-xl font-semibold text-zinc-950">{point.title}</h3>
+              <p className="mt-3 text-sm leading-7 text-zinc-600">{point.description}</p>
+            </article>
           ))}
         </div>
       </div>

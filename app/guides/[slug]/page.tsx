@@ -43,94 +43,97 @@ export default function GuidePage({ params }: Props) {
   const relatedCategories = categories.filter((item) => guide.relatedCategorySlugs.includes(item.slug))
 
   return (
-    <div className="py-12 bg-slate-950">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <nav className="flex items-center gap-2 text-xs text-slate-400 mb-8">
-          <Link href="/" className="hover:text-orange-400 transition-colors">Home</Link>
+    <div className="bg-stone-100 py-12 sm:py-14">
+      <article className="container-content max-w-5xl">
+        <nav className="mb-8 flex items-center gap-2 text-xs text-zinc-500">
+          <Link href="/" className="transition hover:text-accent-700">Home</Link>
           <span>/</span>
-          <Link href="/guides" className="hover:text-orange-400 transition-colors">Guides</Link>
+          <Link href="/guides" className="transition hover:text-accent-700">Guides</Link>
           {parentCategory && (
             <>
               <span>/</span>
-              <Link href={`/categories/${parentCategory.slug}`} className="hover:text-orange-400 transition-colors">{parentCategory.name}</Link>
+              <Link href={`/categories/${parentCategory.slug}`} className="transition hover:text-accent-700">{parentCategory.name}</Link>
             </>
           )}
           <span>/</span>
-          <span className="text-slate-200 truncate max-w-[180px]">{guide.title}</span>
+          <span className="max-w-[180px] truncate text-zinc-700">{guide.title}</span>
         </nav>
 
-        <section className="rounded-3xl border border-white/10 bg-gradient-to-br from-slate-900 to-slate-950 p-6 sm:p-10 mb-7">
-          <div className="flex items-center gap-3 mb-3">
-            <span className="text-xs font-semibold uppercase tracking-[0.15em] text-orange-300">{guide.category}</span>
-            <span className="text-slate-500">•</span>
-            <span className="text-xs text-slate-400">{guide.readTime}</span>
+        <section className="section-shell p-7 sm:p-10">
+          <div className="mb-4 flex items-center gap-3">
+            <span className="chip">{guide.category}</span>
+            <span className="text-zinc-400">•</span>
+            <span className="text-xs text-zinc-500">{guide.readTime}</span>
           </div>
-          <h1 className="text-3xl sm:text-5xl font-black leading-tight text-white mb-4">{guide.title}</h1>
-          <p className="text-slate-300 leading-relaxed text-base sm:text-lg mb-5">{guide.description}</p>
-          <div className="rounded-xl border border-white/10 bg-slate-900/70 p-4 text-sm text-slate-300">
-            <strong className="text-white">Affiliate disclosure:</strong> We may earn a commission from qualified purchases, at no extra cost to you. Recommendations remain independent.
-            <Link href="/affiliate-disclosure" className="text-orange-400 hover:text-orange-300 ml-1">Learn more</Link>
+          <h1 className="text-3xl font-semibold leading-tight text-zinc-950 sm:text-5xl">{guide.title}</h1>
+          <p className="mt-4 max-w-4xl text-base leading-8 text-zinc-600 sm:text-lg">{guide.description}</p>
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-zinc-50 p-4 text-sm leading-7 text-zinc-600">
+            <strong className="text-zinc-900">Affiliate disclosure:</strong> We may earn a commission from qualified purchases, at no extra cost to you. Recommendations remain independent.
+            <Link href="/affiliate-disclosure" className="ml-1 font-medium text-accent-700 hover:text-accent-800">Learn more</Link>
           </div>
         </section>
 
         {featuredProduct && (
-          <section className="mb-8 rounded-2xl border border-orange-400/30 bg-slate-900 p-5 sm:p-7">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-orange-300 mb-2">Best overall pick</p>
-            <h2 className="text-2xl sm:text-3xl font-black text-white mb-2">{featuredProduct.name}</h2>
-            <p className="text-slate-300 mb-4">{featuredProduct.shortDescription}</p>
-            <a
-              href={withAffiliateTag(featuredProduct.affiliateUrl)}
-              target="_blank"
-              rel="noopener noreferrer nofollow"
-              className="inline-flex rounded-xl bg-orange-500 px-5 py-3 text-sm font-bold text-white hover:bg-orange-600"
-            >
-              Check Price on Amazon
-            </a>
+          <section className="mt-7 rounded-2xl border border-accent-300 bg-white p-6 sm:p-7">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent-700">Best overall recommendation</p>
+            <h2 className="mt-2 text-3xl font-semibold text-zinc-950">{featuredProduct.name}</h2>
+            <p className="mt-3 max-w-3xl text-base leading-8 text-zinc-600">{featuredProduct.shortDescription}</p>
+            <div className="mt-5 flex flex-wrap items-center gap-3">
+              <a
+                href={withAffiliateTag(featuredProduct.affiliateUrl)}
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+                className="btn-primary bg-accent-600 hover:bg-accent-500"
+              >
+                Check Price on Amazon
+              </a>
+              <span className="text-sm text-zinc-500">Default pick for most readers.</span>
+            </div>
           </section>
         )}
 
-        <section className="mb-8 rounded-2xl border border-white/10 bg-slate-900 p-5 sm:p-7">
-          <h2 className="text-xl font-bold text-white mb-4">Quick summary</h2>
-          <ul className="space-y-2 text-sm text-slate-200 mb-4">
+        <section className="section-shell mt-7 p-6 sm:p-7">
+          <h2 className="text-2xl font-semibold text-zinc-950">Quick summary</h2>
+          <ul className="mt-4 space-y-2 text-sm text-zinc-700">
             {guide.quickSummary.bullets.map((bullet) => (
-              <li key={bullet} className="flex gap-2"><span className="text-orange-400">•</span><span>{bullet}</span></li>
+              <li key={bullet} className="flex gap-2"><span className="text-accent-600">•</span><span>{bullet}</span></li>
             ))}
           </ul>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
-            <p className="rounded-xl border border-white/10 bg-slate-950 p-3"><span className="text-slate-400">For:</span> {guide.quickSummary.forWho}</p>
-            <p className="rounded-xl border border-white/10 bg-slate-950 p-3"><span className="text-slate-400">Best pick:</span> {guide.quickSummary.bestPick}</p>
-            {guide.quickSummary.skipIf && <p className="rounded-xl border border-white/10 bg-slate-950 p-3"><span className="text-slate-400">Skip if:</span> {guide.quickSummary.skipIf}</p>}
+          <div className="mt-5 grid grid-cols-1 gap-3 text-sm md:grid-cols-3">
+            <p className="rounded-xl border border-zinc-200 bg-zinc-50 p-3"><span className="text-zinc-500">For:</span> {guide.quickSummary.forWho}</p>
+            <p className="rounded-xl border border-zinc-200 bg-zinc-50 p-3"><span className="text-zinc-500">Best pick:</span> {guide.quickSummary.bestPick}</p>
+            {guide.quickSummary.skipIf && <p className="rounded-xl border border-zinc-200 bg-zinc-50 p-3"><span className="text-zinc-500">Skip if:</span> {guide.quickSummary.skipIf}</p>}
           </div>
         </section>
 
-        <p className="text-slate-300 leading-relaxed mb-10">{guide.intro}</p>
+        <p className="mt-9 text-base leading-8 text-zinc-700">{guide.intro}</p>
 
-        <section className="mb-10">
-          <h2 className="text-2xl font-bold text-white mb-4">Who this guide is for</h2>
-          <ul className="space-y-2.5">
+        <section className="mt-10">
+          <h2 className="text-3xl font-semibold text-zinc-950">Who this guide is for</h2>
+          <ul className="mt-4 space-y-3">
             {guide.whoItIsFor.map((point) => (
-              <li key={point} className="flex items-start gap-2.5 text-sm text-slate-200"><span className="text-orange-400 mt-0.5">→</span>{point}</li>
+              <li key={point} className="flex items-start gap-2.5 text-sm leading-7 text-zinc-700"><span className="mt-1 h-2 w-2 rounded-full bg-accent-600" />{point}</li>
             ))}
           </ul>
         </section>
 
-        <section className="mb-10">
-          <h2 className="text-2xl font-bold text-white mb-5">What matters before buying</h2>
-          <div className="space-y-4">
+        <section className="mt-10">
+          <h2 className="text-3xl font-semibold text-zinc-950">What matters before buying</h2>
+          <div className="mt-5 space-y-4">
             {guide.whatMatters.map((item, i) => (
-              <article key={item.title} className="rounded-2xl border border-white/10 bg-slate-900 p-4">
-                <h3 className="text-base font-semibold text-white mb-1">{i + 1}. {item.title}</h3>
-                <p className="text-sm text-slate-300 leading-relaxed">{item.description}</p>
+              <article key={item.title} className="section-shell p-5">
+                <h3 className="text-lg font-semibold text-zinc-900">{i + 1}. {item.title}</h3>
+                <p className="mt-2 text-sm leading-7 text-zinc-600">{item.description}</p>
               </article>
             ))}
           </div>
         </section>
 
         {products.length > 0 && (
-          <section className="mb-10" id="top-picks">
-            <h2 className="text-2xl font-bold text-white mb-2">Top picks in this guide</h2>
-            <p className="text-sm text-slate-400 mb-6">Decision-focused recommendations with clear trade-offs.</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <section className="mt-10" id="top-picks">
+            <h2 className="text-3xl font-semibold text-zinc-950">Top picks in this guide</h2>
+            <p className="mt-2 text-sm text-zinc-500">Decision-focused recommendations with clear trade-offs.</p>
+            <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
               {products.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
@@ -139,22 +142,22 @@ export default function GuidePage({ params }: Props) {
         )}
 
         {products.length > 1 && (
-          <section className="mb-10 overflow-x-auto">
-            <h2 className="text-2xl font-bold text-white mb-4">At-a-glance comparison</h2>
-            <table className="w-full min-w-[640px] text-sm border-collapse overflow-hidden rounded-xl border border-white/10">
-              <thead className="bg-slate-900">
+          <section className="mt-10 overflow-x-auto">
+            <h2 className="text-3xl font-semibold text-zinc-950">At-a-glance comparison</h2>
+            <table className="mt-4 w-full min-w-[640px] overflow-hidden rounded-xl border border-zinc-200 text-sm">
+              <thead className="bg-zinc-900 text-stone-100">
                 <tr>
-                  <th className="text-left p-3 text-slate-300">Pick</th>
-                  <th className="text-left p-3 text-slate-300">Best for</th>
-                  <th className="text-left p-3 text-slate-300">Main trade-off</th>
+                  <th className="p-3 text-left">Pick</th>
+                  <th className="p-3 text-left">Best for</th>
+                  <th className="p-3 text-left">Main trade-off</th>
                 </tr>
               </thead>
               <tbody>
                 {products.map((product) => (
-                  <tr key={product.id} className="border-t border-white/10 bg-slate-950">
-                    <td className="p-3 text-white font-semibold">{product.name}</td>
-                    <td className="p-3 text-slate-300">{product.bestFor}</td>
-                    <td className="p-3 text-slate-400">{product.cons[0]}</td>
+                  <tr key={product.id} className="border-t border-zinc-200 bg-white">
+                    <td className="p-3 font-semibold text-zinc-900">{product.name}</td>
+                    <td className="p-3 text-zinc-700">{product.bestFor}</td>
+                    <td className="p-3 text-zinc-600">{product.cons[0]}</td>
                   </tr>
                 ))}
               </tbody>
@@ -162,59 +165,59 @@ export default function GuidePage({ params }: Props) {
           </section>
         )}
 
-        <section className="mb-10 rounded-2xl border border-white/10 bg-slate-900 p-6">
-          <h2 className="text-xl font-bold text-white mb-3">Why trust this guide</h2>
-          <div className="space-y-2 text-sm text-slate-300">
+        <section className="mt-10 rounded-2xl border border-zinc-200 bg-white p-6">
+          <h2 className="text-2xl font-semibold text-zinc-950">Why trust this guide</h2>
+          <div className="mt-3 space-y-2 text-sm leading-7 text-zinc-700">
             {guide.methodology.map((line) => (
               <p key={line}>• {line}</p>
             ))}
           </div>
         </section>
 
-        <section className="mb-10">
-          <h2 className="text-2xl font-bold text-white mb-5">Frequently asked questions</h2>
-          <div className="space-y-5">
+        <section className="mt-10">
+          <h2 className="text-3xl font-semibold text-zinc-950">Frequently asked questions</h2>
+          <div className="mt-5 space-y-5">
             {guide.faqs.map((faq) => (
-              <article key={faq.question} className="border-b border-white/10 pb-5 last:border-0">
-                <h3 className="text-base font-semibold text-white mb-2">{faq.question}</h3>
-                <p className="text-sm text-slate-300 leading-relaxed">{faq.answer}</p>
+              <article key={faq.question} className="border-b border-zinc-200 pb-5 last:border-0">
+                <h3 className="text-lg font-semibold text-zinc-900">{faq.question}</h3>
+                <p className="mt-2 text-sm leading-7 text-zinc-600">{faq.answer}</p>
               </article>
             ))}
           </div>
         </section>
 
-        <section className="mb-10 rounded-2xl border border-orange-500/25 bg-slate-900 p-6">
-          <h2 className="text-xl font-bold text-white mb-3">Verdict</h2>
-          <p className="text-slate-300 leading-relaxed mb-4">{guide.conclusion}</p>
-          <div className="flex flex-wrap gap-3">
-            <Link href="/guides" className="inline-flex rounded-xl border border-white/15 px-4 py-2 text-sm text-slate-200 hover:border-orange-400/60">See more guides</Link>
-            {parentCategory && <Link href={`/categories/${parentCategory.slug}`} className="inline-flex rounded-xl bg-orange-500 px-4 py-2 text-sm font-semibold text-white hover:bg-orange-600">Browse {parentCategory.name}</Link>}
+        <section className="mt-10 rounded-2xl border border-accent-300 bg-white p-6">
+          <h2 className="text-2xl font-semibold text-zinc-950">Verdict</h2>
+          <p className="mt-3 leading-8 text-zinc-700">{guide.conclusion}</p>
+          <div className="mt-5 flex flex-wrap gap-3">
+            <Link href="/guides" className="btn-secondary">See more guides</Link>
+            {parentCategory && <Link href={`/categories/${parentCategory.slug}`} className="btn-primary bg-accent-600 hover:bg-accent-500">Browse {parentCategory.name}</Link>}
           </div>
         </section>
 
-        <section className="mb-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="rounded-2xl border border-white/10 bg-slate-900 p-5">
-            <h3 className="text-lg font-bold text-white mb-3">Related guides</h3>
-            <ul className="space-y-2 text-sm">
+        <section className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="section-shell p-5">
+            <h3 className="text-xl font-semibold text-zinc-950">Related guides</h3>
+            <ul className="mt-3 space-y-2 text-sm">
               {relatedGuides.map((related) => (
                 <li key={related.slug}>
-                  <Link href={`/guides/${related.slug}`} className="text-slate-200 hover:text-orange-300">{related.title} →</Link>
+                  <Link href={`/guides/${related.slug}`} className="text-zinc-700 transition hover:text-accent-700">{related.title} →</Link>
                 </li>
               ))}
             </ul>
           </div>
-          <div className="rounded-2xl border border-white/10 bg-slate-900 p-5">
-            <h3 className="text-lg font-bold text-white mb-3">Related categories</h3>
-            <ul className="space-y-2 text-sm">
+          <div className="section-shell p-5">
+            <h3 className="text-xl font-semibold text-zinc-950">Related categories</h3>
+            <ul className="mt-3 space-y-2 text-sm">
               {relatedCategories.map((relatedCategory) => (
                 <li key={relatedCategory.slug}>
-                  <Link href={`/categories/${relatedCategory.slug}`} className="text-slate-200 hover:text-orange-300">{relatedCategory.name} hub →</Link>
+                  <Link href={`/categories/${relatedCategory.slug}`} className="text-zinc-700 transition hover:text-accent-700">{relatedCategory.name} hub →</Link>
                 </li>
               ))}
             </ul>
           </div>
         </section>
-      </div>
+      </article>
     </div>
   )
 }
